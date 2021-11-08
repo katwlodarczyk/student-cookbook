@@ -11,6 +11,9 @@ module.exports = {
       fontSize: {
         'xxxs' : '10px',
       },
+      fontFamily: {
+        'galada': 'Galada',
+      }
     },
   },
   variants: {
