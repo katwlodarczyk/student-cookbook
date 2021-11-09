@@ -3,19 +3,24 @@ import DefaultBackgroundImage from '../assets/images/louis-hansel.jpg'
 
 Banner.propTypes = {
   heading: PropTypes.string,
-  image: PropTypes.string.isRequired
+  image: PropTypes.string.isRequired,
+  center: PropTypes.bool,
 };
 
 Banner.defaultProps = {
-  image: DefaultBackgroundImage
+  image: DefaultBackgroundImage,
 };
 
 function Banner(props) {
-    const {heading, image} = props;
+    const {heading, image, center} = props;
 
     return (
-     <div style={{ background: `url(${image})`, backgroundSize: 'cover', backgroundPosition: 'center' }} no-repeat class="bg-gray-300 bg-cover h-40 w-full flex justify-end p-6">
-         <h1 class="w-1/3 mr-4 font-galada text-4xl text-white text-right"> { heading } </h1>
+     <div 
+        style={{ background: `url(${image})`, backgroundSize: 'cover', backgroundPosition: 'center' }} 
+        no-repeat="true" 
+        className={"bg-gray-300 bg-cover h-40 w-full flex p-6 "+ (center ? 'justify-center' : 'justify-end')}
+    >
+         <h1 className={"font-galada text-4xl text-white " + (center ? 'w-full items-center justify-center flex text-center' : 'w-1/3 mr-4 text-right')}> { heading } </h1>
      </div>
      
     );

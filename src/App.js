@@ -5,6 +5,7 @@ import {
   useLocation
 } from "react-router-dom";
 import Home from './viewes/Home';
+import ShoppingList from './viewes/ShoppingList';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
           <Home />
         </Route>
         <Route path="/shopping-list">
-        
+          <ShoppingList />
         </Route>
         <Route path="/planner">
           
