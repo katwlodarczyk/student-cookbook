@@ -1,15 +1,15 @@
 import Banner from "../components/Banner";
 import TabBar from "../components/TabBar";
-import shopingList from "../assets/images/shopping-list.jpg"
+import calendar from "../assets/images/calendar.jpg";
 
-const ShoppingList = (props) => {
+const WeeklyPlanner = (props) => {
 
     const {} = props;
-    const bgImage = shopingList
+    const bgImage = calendar
 
   return (
     <div className="w-full h-screen">
-        <Banner center image={bgImage} position="center" heading="Shopping list" className="bg-cover"/>
+        <Banner center image={bgImage} position="top" heading="Weekly Planner"/>
         <div className="p-4 flex flex-col space-y-5">
             
         </div>
@@ -18,4 +18,4 @@ const ShoppingList = (props) => {
   );
 };
 
-export default ShoppingList;
+export default WeeklyPlanner;

@@ -9,7 +9,7 @@ const Home = (props) => {
 
   return (
     <div className="w-full h-screen">
-        <Banner heading="Let's get cooking!"/>
+        <Banner position="center" heading="Let's get cooking!"/>
         <div class="p-4 flex flex-col space-y-5">
             <SearchBar/>
             <div className="grid grid-cols-2 gap-3">

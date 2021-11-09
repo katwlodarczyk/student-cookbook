@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import Home from './viewes/Home';
 import ShoppingList from './viewes/ShoppingList';
+import WeeklyPlanner from './viewes/WeeklyPlanner';
 
 function App() {
   return (
@@ -17,8 +18,8 @@ function App() {
         <Route path="/shopping-list">
           <ShoppingList />
         </Route>
-        <Route path="/planner">
-          
+        <Route path="/weekly-planner">
+          <WeeklyPlanner />
         </Route>
         <Route path="/recipe">
           
