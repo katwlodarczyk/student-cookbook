@@ -13,7 +13,13 @@ module.exports = {
       },
       fontFamily: {
         'galada': 'Galada',
-      }
+      },
+      width: {
+        41: '10.25rem',
+      },
+      height: {
+        34: '8.5rem',
+      },
     },
   },
   variants: {
