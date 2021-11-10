@@ -82,7 +82,7 @@ const recipeCollection = [
 
 function App() {
   return (
-    <div className="App">
+    <div className="App font-koho">
       <Switch>
         <Route exact path="/">
           <Home recipeCollection={recipeCollection}/>

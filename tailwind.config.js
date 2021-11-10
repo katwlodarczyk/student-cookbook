@@ -13,6 +13,7 @@ module.exports = {
       },
       fontFamily: {
         'galada': 'Galada',
+        'koho': 'KoHo'
       },
       width: {
         41: '10.25rem',
