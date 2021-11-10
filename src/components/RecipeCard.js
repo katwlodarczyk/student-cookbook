@@ -15,7 +15,7 @@ function RecipeCard(props) {
     const {time, image, title} = props;
 
     return (
-        <div className="relative w-41 h-34 text-white text-xxxs rounded-lg flex" style={{ background: `url(${image})`, backgroundSize: 'cover', backgroundPosition: 'bottom' }} no-repeat="true"> 
+        <div className="relative w-41 h-34 text-white text-xxxs shadow-lg rounded-lg flex" style={{ background: `url(${image})`, backgroundSize: 'cover', backgroundPosition: 'bottom' }} no-repeat="true"> 
             <div className="absolute w-full h-full bg-overlay rounded-lg"></div>
             <Link to='/recipe/' className="z-20 w-full h-full p-2 flex flex-col justify-end">
                 <div className="flex flex-row items-center space-x-1">

@@ -13,7 +13,7 @@ function SearchBar(props) {
 
     return (
         <div>
-        <label htmlFor="search" className="sr-only block text-sm font-medium text-gray-700">
+        <label htmlFor="search" className="sr-only block text-sm shadow-md font-medium text-gray-700">
             Search
         </label>
         <div className="mt-1 relative rounded-md shadow-sm">

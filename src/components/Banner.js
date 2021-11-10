@@ -20,7 +20,7 @@ function Banner(props) {
      <div 
         style={{ background: `url(${image})`, backgroundSize: 'cover', backgroundPosition: `${position}`}} 
         no-repeat="true" 
-        className="relative bg-gray-300 bg-cover h-40 w-full flex "
+        className="relative bg-gray-300 bg-cover shadow-lg h-40 w-full flex "
     >
         <div className="w-full h-full bg-overlay absolute" />
         <div className={"z-20 w-full p-6 flex " + (center ? 'justify-center' : 'justify-end')}>
