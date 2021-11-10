@@ -5,7 +5,7 @@ import TabBar from "../components/TabBar";
 
 const Home = (props) => {
 
-    const {} = props;
+    const {recipeCollection} = props;
 
   return (
     <div className="w-full h-screen">
@@ -13,8 +13,9 @@ const Home = (props) => {
         <div class="p-4 flex flex-col space-y-5">
             <SearchBar/>
             <div className="grid grid-cols-2 gap-3">
-                <RecipeCard time='30 mins' title='Spaghetti Bolognese' image='https://images.unsplash.com/photo-1590576502976-a7b6cd63f4dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1974&q=80'/>
-                <RecipeCard time='30 mins' title='Spaghetti Bolognese' image='https://images.unsplash.com/photo-1590576502976-a7b6cd63f4dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1974&q=80'/>
+              {recipeCollection.map( (recipe) => 
+                <RecipeCard key={recipe.id} time={recipe.time} title={recipe.title} image={recipe.image}/>
+              )}
             </div>
         </div>
         <TabBar/>
