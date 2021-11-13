@@ -2,7 +2,6 @@ import './App.css';
 import {
   Switch,
   Route,
-  useLocation
 } from "react-router-dom";
 import Home from './viewes/Home';
 import ShoppingList from './viewes/ShoppingList';
@@ -80,6 +79,19 @@ const recipeCollection = [
   },
 ];
 
+const shoppingList = [
+  {
+    id: 1,
+    name: '150g of spaghetti pasta',
+    alreadyGot: false,
+  },
+  {
+    id: 2,
+    name: '500g of beef mince meat',
+    alreadyGot: true,
+  },
+];
+
 function App() {
   return (
     <div className="App font-koho">
@@ -88,7 +100,7 @@ function App() {
           <Home recipeCollection={recipeCollection}/>
         </Route>
         <Route path="/shopping-list">
-          <ShoppingList />
+          <ShoppingList shoppingList={shoppingList}/>
         </Route>
         <Route path="/weekly-planner">
           <WeeklyPlanner />
