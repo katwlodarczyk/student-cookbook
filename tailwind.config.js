@@ -19,8 +19,12 @@ module.exports = {
         41: '10.25rem',
       },
       height: {
+        25: '6.125rem',
         34: '8.5rem',
       },
+      margin: {
+        25: '6.125rem',
+      }
     },
   },
   variants: {
