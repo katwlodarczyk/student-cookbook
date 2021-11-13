@@ -9,7 +9,7 @@ function Checkbox(props) {
               id="item"
               name="item"
               type="checkbox"
-              className="focus:ring-brand-orange h-4 w-4 text-brand-orange border-gray-300 rounded"
+              className={"focus:ring-brand-orange h-4 w-4 text-brand-orange border-gray-300 rounded "+ (alreadyGot ? '' : '') }
             />
           </div>
           <div className="ml-3 text-sm">

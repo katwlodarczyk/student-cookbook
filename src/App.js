@@ -90,6 +90,7 @@ const shoppingList = [
     name: '500g of beef mince meat',
     alreadyGot: true,
   },
+  
 ];
 
 function App() {

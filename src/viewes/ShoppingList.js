@@ -21,8 +21,8 @@ const ShoppingList = (props) => {
           </div>
         }
         {shoppingList.length > 0 && 
-          <div className="mb-25 py-4 flex flex-col space-y-5">
-              <div className="px-4 flex flex-col space-y-2">
+          <div className="mb-25 p-4 pb-12 h-full flex flex-col  space-y-5 divide-y divide-dashed divide-gray-300">
+              <div className="min-h-max flex flex-col space-y-2 pb-2">
                 <h2 className="text-lg">To Buy:</h2>
                 <div className="flex flex-col space-y-2">
                   {shoppingList.map( (item) => 
@@ -30,7 +30,7 @@ const ShoppingList = (props) => {
                   )}
                 </div>
               </div>
-              <div className="p-4 bg-gray-100 flex flex-col space-y-2">
+              <div className="pt-4 flex flex-col space-y-2">
                 <h2 className="text-lg">Already got:</h2>
                 <div className="flex flex-col space-y-2">
                   {shoppingList.map( (item) => 
