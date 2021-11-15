@@ -3,6 +3,7 @@ import RecipeCard from "../components/RecipeCard";
 import SearchBar from "../components/SearchBar";
 import TabBar from "../components/TabBar";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const Home = (props) => {
 
@@ -15,7 +16,9 @@ const Home = (props) => {
             <SearchBar/>
             <div className="grid grid-cols-2 gap-3">
               {recipeCollection.map( (recipe) => 
-                <RecipeCard key={recipe.id} recipe={recipe}/>
+                <Link to={`/recipe/${recipe.id}`} key={recipe.id}>
+                  <RecipeCard recipe={recipe}/>
+                </Link>
               )}
             </div>
         </div>

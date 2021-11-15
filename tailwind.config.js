@@ -24,7 +24,10 @@ module.exports = {
       },
       margin: {
         25: '6.125rem',
-      }
+      },
+      minHeight: {
+        12.5:'12.5rem',
+      },
     },
   },
   variants: {

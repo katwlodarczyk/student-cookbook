@@ -22,7 +22,7 @@ function Banner(props) {
         no-repeat="true" 
         className="relative bg-gray-300 bg-cover shadow-lg h-40 w-full flex "
     >
-        <div className="w-full h-full bg-overlay absolute" />
+        <div className="w-full h-full bg-recipe-overlay absolute" />
         <div className={"z-20 w-full p-6 flex " + (center ? 'justify-center' : 'justify-end')}>
             <h1 className={"font-galada text-4xl text-white " + (center ? 'w-full items-center justify-center flex text-center' : 'w-1/3 mr-4 text-right')}> { heading } </h1>
         </div>
