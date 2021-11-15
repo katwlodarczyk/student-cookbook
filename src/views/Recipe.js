@@ -19,7 +19,7 @@ const Recipe = (props) => {
 
   return (
     <div className="relative text-gray-700 w-full min-h-screen h-max">
-        <Banner position="center" heading="" image={recipe.image}/>
+        <Banner position="center" withIcon image={recipe.image}/>
         <div className="min-h-screen mb-44 p-4 flex flex-col space-y-5">
             <div className="flex flex-row justify-between">
                 <div className="flex flex-col space-y-2">

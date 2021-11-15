@@ -3,30 +3,13 @@ import TabBar from "../components/TabBar";
 import calendar from "../assets/images/calendar.jpg";
 import weeklyPlanner from "../assets/illustrations/empty-calendar.svg";
 import RecipeCardFluid from "../components/RecipeCardFluid";
+import { getPlanner } from "../data";
 
 const WeeklyPlanner = () => {
 
     const bgImage = calendar;
     const empty = weeklyPlanner;
-
-    const planner = [
-      {
-        id: 1,
-        date: 'Today',
-        recipeId: 1,
-      },
-      {
-        id: 2,
-        date: 'Tomorrow',
-        recipeId: 2,
-      },
-      {
-        id: 2,
-        date: 'Wednesday',
-        recipeId: 2,
-      },
-      
-    ]
+    let planner = getPlanner();
 
   return (
     <div className="w-full min-h-screen h-max">

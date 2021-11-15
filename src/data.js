@@ -10,7 +10,7 @@ let shoppingList = [
       alreadyGot: true,
     },
     
-  ];
+];
 
   const recipeCollection = [
     {
@@ -82,34 +82,66 @@ let shoppingList = [
         },
       ]
     },
-  ];
+];
+
+let planner = [
+    {
+      id: 1,
+      date: 'Today',
+      recipeId: 1,
+    },
+    {
+      id: 2,
+      date: 'Tomorrow',
+      recipeId: 2,
+    },
+    {
+      id: 2,
+      date: 'Wednesday',
+      recipeId: 2,
+    },
+]
   
-  export function getShoppingList() {
-    return shoppingList;
-  }
+// SHOPPING LIST
+export function getShoppingList() {
+return shoppingList;
+}
 
-  export function getRecipeCollection() {
-    return recipeCollection;
-  }
 
-  export function getRecipe(id) {
-    return recipeCollection.find(
-      recipe => recipe.id === id
-    );
-  }
+// RECIPES
+export function getRecipeCollection() {
+return recipeCollection;
+}
 
-  export function getSteps(recipeId) {
+export function getRecipe(id) {
+return recipeCollection.find(
+    recipe => recipe.id === id
+);
+}
+
+export function getSteps(recipeId) {
+const recipe = recipeCollection.find(
+    recipe => recipe.id === recipeId
+)
+return recipe.recipeSteps
+}
+
+export function getStep(recipeId, stepId) {
     const recipe = recipeCollection.find(
         recipe => recipe.id === recipeId
     )
-    return recipe.recipeSteps
-  }
-  
-  export function getStep(recipeId, stepId) {
-      const recipe = recipeCollection.find(
-          recipe => recipe.id === recipeId
-      )
-      return recipe.recipeSteps.find(
-        step => step.id === stepId
-    )
-  }
+    return recipe.recipeSteps.find(
+    step => step.id === stepId
+)
+}
+
+//   PLANNER 
+export function getPlanner() {
+    return planner;
+}
+
+export function deleteFromPlanner(recipeId) {
+    planner = planner.filter(
+        recipe => recipe.id !== recipeId
+    );
+}
