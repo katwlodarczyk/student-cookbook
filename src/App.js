@@ -3,11 +3,11 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import Home from './viewes/Home';
-import ShoppingList from './viewes/ShoppingList';
-import WeeklyPlanner from './viewes/WeeklyPlanner';
-import Recipe from './viewes/Recipe';
-import CookRecipe from './viewes/CookRecipe';
+import Home from './views/Home';
+import ShoppingList from './views/ShoppingList';
+import WeeklyPlanner from './views/WeeklyPlanner';
+import Recipe from './views/Recipe';
+import CookRecipe from './views/CookRecipe';
 import { getShoppingList, getRecipeCollection } from "./data.js";
 
 function App() {
@@ -20,9 +20,8 @@ function App() {
           <Route exact path="/" element={<Home recipeCollection={recipeCollection}/>} />
           <Route path="/shopping-list" element={<ShoppingList shoppingList={shoppingList}/>} />
           <Route path="/weekly-planner" element={<WeeklyPlanner />} />
-          <Route path={`/recipe/:recipeId`} element={<Recipe />}>
-            <Route path={`step/:stepId`} element={<CookRecipe />} />
-          </Route>
+          <Route path={`/recipe/:recipeId`} element={<Recipe />} />
+          <Route path={`/recipe/:recipeId/step/:stepId`} element={<CookRecipe />} />
           <Route path="*" />
         </Routes>
     </div>

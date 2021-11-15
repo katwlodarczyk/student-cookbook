@@ -98,11 +98,18 @@ let shoppingList = [
     );
   }
 
+  export function getSteps(recipeId) {
+    const recipe = recipeCollection.find(
+        recipe => recipe.id === recipeId
+    )
+    return recipe.recipeSteps
+  }
+  
   export function getStep(recipeId, stepId) {
       const recipe = recipeCollection.find(
           recipe => recipe.id === recipeId
       )
       return recipe.recipeSteps.find(
-          step => step.id === stepId
-      )
+        step => step.id === stepId
+    )
   }

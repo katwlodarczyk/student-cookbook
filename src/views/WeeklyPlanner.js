@@ -40,10 +40,10 @@ const WeeklyPlanner = () => {
         {planner.length > 0 && 
           <div className="mb-25 p-4 pb-28">
             <div className="flex flex-col space-y-6">
-              {planner.map( (item) => 
+              {planner.map( (item,index) => 
                 <div className="flex flex-col space-y-4">
                 <h2 className="text-lg">{item.date}</h2>
-                <RecipeCardFluid key={item.id} recipe={item.recipeId}/> 
+                <RecipeCardFluid key={index} recipe={item.recipeId}/> 
                 </div>
               )}
             </div>
