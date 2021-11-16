@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { getRecipe, deleteFromPlanner } from "../data";
 
 RecipeCardFluid.propTypes = {
     recipe: PropTypes.number,
 };
 
 function RecipeCardFluid(props) {
-    const {recipe} = props;
+    const {recipeId} = props;
+    let recipe = getRecipe(parseInt(recipeId, 10));
 
     const [showMenu, setShowMenu] = useState(false);
 
     const removeRecipe = () => {
-        console.log("Recipe removed")
+        deleteFromPlanner(recipeId)
     }
 
     const displayMenu = e => {
@@ -23,7 +25,7 @@ function RecipeCardFluid(props) {
         <div className="relative w-full h-34 text-white text-xxxs shadow-lg rounded-lg flex" style={{ background: `url(${recipe.image})`, backgroundSize: 'cover', backgroundPosition: 'bottom' }} no-repeat="true"> 
             <div className="absolute w-full h-full bg-overlay rounded-lg"></div>
             <div className="z-20 w-full h-full p-2 flex flex-row items-end justify-between">
-                <div className="text-xs">
+                <div className="text-base pb-1">
                     { recipe.title }
                 </div>
                 <div className="relative inline-block text-left">

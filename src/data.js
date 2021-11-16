@@ -87,18 +87,23 @@ let shoppingList = [
 let planner = [
     {
       id: 1,
-      date: 'Today',
+      date: '2021-11-16T13:47:31+00:00',
       recipeId: 1,
     },
     {
       id: 2,
-      date: 'Tomorrow',
+      date: '2021-11-17T13:47:31+00:00',
       recipeId: 2,
     },
     {
-      id: 2,
-      date: 'Wednesday',
-      recipeId: 2,
+      id: 3,
+      date: '2021-11-18T13:47:31+00:00',
+      recipeId: 3,
+    },
+    {
+      id: 3,
+      date: '2021-11-16T16:47:31+00:00',
+      recipeId: 3,
     },
 ]
   
