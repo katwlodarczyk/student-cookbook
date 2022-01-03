@@ -1,9 +1,9 @@
 import logo from '../assets/illustrations/logo.svg'
 import React, { useState } from "react";
-import Form from "../components/LoginForm";
+import Form from "../components/RegisterForm";
 import useAuth from "../services/useAuth";
 
-const Login = (props) => {
+const Register = (props) => {
   const [serverErrorMessage, setServerErrorMessage] = useState();
   const {signInEmailUser, signInFacebookUser, signInGoogleUser} = useAuth();
 
@@ -45,4 +45,4 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+export default Register;
