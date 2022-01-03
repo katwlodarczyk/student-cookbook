@@ -48,7 +48,7 @@ const WeeklyPlanner = () => {
             <div className="flex flex-col space-y-6">
               {groupByDay(planner)}
               {planner.map( (item) => 
-                <div className="flex flex-col space-y-4">
+                <div key={item.date} className="flex flex-col space-y-4">
                 <h2 className="text-lg">{ weekDayFormatting(item.date) }</h2>
                 <RecipeCardFluid key={item.id} recipeId={item.recipeId}/> 
                 </div>
