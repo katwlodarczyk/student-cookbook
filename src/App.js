@@ -13,35 +13,9 @@ import { initializeApp } from "firebase/app";
 import firebaseConfig from "./config/firebase";
 import useAuth from "./services/useAuth";
 
-function Protected({ authenticated, children, ...rest }) {
-  return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        authenticated ? (
-          children
-        ) : (
-          <Navigate replace
-            to={{
-              pathname: "/login",
-              state: { from: location },
-            }}
-          />
-        )
-      }
-    />
-  );
-}
-
 function RequireAuth({ children }) {
-  let auth = useAuth();
-  let location = useLocation();
-
-  if (!auth.user) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
-  }
-
-  return children;
+  let isAuthenticated = useAuth();
+  return isAuthenticated ? children : <Navigate to="/login" />;
 }
 
 function App() {
@@ -64,8 +38,25 @@ function App() {
         <Routes>
           <Route path='/login' element={<Login signInEmailUser={signInEmailUser} />} />
           <Route path='/register' element={<Register createEmailUser={createEmailUser}/>} />
-          <Route authenticated={isAuthenticated} exact path="/" element={<RequireAuth><Home recipeCollection={recipeCollection}/></RequireAuth>} />
-          <Route authenticated={isAuthenticated} exact path="/shopping-list" element={<ShoppingList shoppingList={shoppingList}/>} />
+          <Route 
+            exact 
+            path="/" 
+            element={
+            <RequireAuth>
+              <Home recipeCollection={recipeCollection}/>
+            </RequireAuth>
+            } 
+            />
+          <Route 
+          authenticated={isAuthenticated} 
+          exact 
+          path="/shopping-list" 
+          element={
+          <RequireAuth>
+            <ShoppingList shoppingList={shoppingList}/>
+          </RequireAuth>
+            }
+          />
           <Route authenticated={isAuthenticated} exact path="/weekly-planner" element={<WeeklyPlanner />} />
           <Route authenticated={isAuthenticated} exact path={`/recipe/:recipeId`} element={<Recipe />} />
           <Route authenticated={isAuthenticated} exact path={`/recipe/:recipeId/step/:stepId`} element={<CookRecipe />} />
