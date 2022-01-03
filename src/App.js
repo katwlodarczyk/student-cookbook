@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useEffect } from "react";
-import { Routes, Route, Link, Navigate, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate, useLocation } from "react-router-dom";
 import Home from './views/Home';
 import ShoppingList from './views/ShoppingList';
 import WeeklyPlanner from './views/WeeklyPlanner';
@@ -12,17 +12,6 @@ import { getShoppingList, getRecipeCollection } from "./data.js";
 import { initializeApp } from "firebase/app";
 import firebaseConfig from "./config/firebase";
 import useAuth from "./services/useAuth";
-
-function NoMatch() {
-  return (
-    <div>
-      <h2>Nothing to see here!</h2>
-      <p>
-        <Link to="/">Go to the home page</Link>
-      </p>
-    </div>
-  );
-}
 
 function Protected({ authenticated, children, ...rest }) {
   return (
@@ -49,10 +38,6 @@ function RequireAuth({ children }) {
   let location = useLocation();
 
   if (!auth.user) {
-    // Redirect them to the /login page, but save the current location they were
-    // trying to go to when they were redirected. This allows us to send them
-    // along to that page after they login, which is a nicer user experience
-    // than dropping them off on the home page.
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
@@ -61,7 +46,7 @@ function RequireAuth({ children }) {
 
 function App() {
   initializeApp(firebaseConfig);
-  const { isAuthenticated, createEmailUser, signInEmailUser, signUserOut } = useAuth();
+  const { isAuthenticated, createEmailUser, signInEmailUser } = useAuth();
   useEffect(() => {
     if (isAuthenticated) {
       // history.push(history.location.state.from.pathname);
@@ -77,18 +62,18 @@ function App() {
   return (
     <div className="App font-koho">
         <Routes>
-          <Route path='/login' element={<Login/>} />
-          <Route path='/register' element={<Register/>} />
+          <Route path='/login' element={<Login signInEmailUser={signInEmailUser} />} />
+          <Route path='/register' element={<Register createEmailUser={createEmailUser}/>} />
           <Route authenticated={isAuthenticated} exact path="/" element={<RequireAuth><Home recipeCollection={recipeCollection}/></RequireAuth>} />
           <Route authenticated={isAuthenticated} exact path="/shopping-list" element={<ShoppingList shoppingList={shoppingList}/>} />
           <Route authenticated={isAuthenticated} exact path="/weekly-planner" element={<WeeklyPlanner />} />
           <Route authenticated={isAuthenticated} exact path={`/recipe/:recipeId`} element={<Recipe />} />
           <Route authenticated={isAuthenticated} exact path={`/recipe/:recipeId/step/:stepId`} element={<CookRecipe />} />
-          <Route path="*" element={<NoMatch />}/>
+          <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
     </div>
   );
 }
 
 
-export default App
+export default App;
