@@ -5,7 +5,7 @@ const ErrorLabel = props => {
     const {children} =  props;
 
     return (
-        <div className="text-red-600 font-semibold"> 
+        <div className="text-red-600 text-xs"> 
             {children}
         </div>
     )
