@@ -21,13 +21,15 @@ function RequireAuth({ children }) {
 function App() {
   initializeApp(firebaseConfig);
   const { isAuthenticated, createEmailUser, signInEmailUser } = useAuth();
+  const navigate = useNavigate();
+  
   useEffect(() => {
     if (isAuthenticated) {
-      // history.push(history.location.state.from.pathname);
+      navigate('../', { replace: true })
       return;
     }
     return;
-  }, [isAuthenticated]);
+  }, [isAuthenticated])
 
   const location = useLocation();
   let shoppingList = getShoppingList();

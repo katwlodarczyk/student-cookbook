@@ -18,7 +18,6 @@ function useAuth() {
   const googleProvider = new GoogleAuthProvider();
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      console.log(user);
       setIsAuthenticated(true);
       setUser(auth.currentUser)
       return;
