@@ -8,6 +8,7 @@ import Recipe from './views/Recipe';
 import CookRecipe from './views/CookRecipe';
 import Login from './views/Login';
 import Register from './views/Register';
+import Profile from './views/Profile';
 import { getShoppingList, getRecipeCollection } from "./data.js";
 import { initializeApp } from "firebase/app";
 import firebaseConfig from "./config/firebase";
@@ -60,6 +61,7 @@ function App() {
             }
           />
           <Route authenticated={isAuthenticated} exact path="/weekly-planner" element={<WeeklyPlanner />} />
+          <Route authenticated={isAuthenticated} exact path="/profile" element={<Profile />} />
           <Route authenticated={isAuthenticated} exact path={`/recipe/:recipeId`} element={<Recipe />} />
           <Route authenticated={isAuthenticated} exact path={`/recipe/:recipeId/step/:stepId`} element={<CookRecipe />} />
           <Route path="*" element={<Navigate replace to="/" />} />
