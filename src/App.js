@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Routes, Route, Navigate, useNavigate, useLocation } from "react-router-dom";
 import Home from './views/Home';
 import ShoppingList from './views/ShoppingList';
@@ -22,14 +22,17 @@ function RequireAuth({ children }) {
 function App() {
   initializeApp(firebaseConfig);
   const { isAuthenticated, createEmailUser, signInEmailUser } = useAuth();
+  const componentMounted = useRef(true);
   const navigate = useNavigate();
   
   useEffect(() => {
-    if (isAuthenticated) {
+    if (componentMounted.current && isAuthenticated) {
       navigate('../', { replace: true })
       return;
     }
-    return;
+    return () => {
+      componentMounted.current = false;
+    }
   }, [isAuthenticated])
 
   const location = useLocation();
