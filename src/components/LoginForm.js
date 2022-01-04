@@ -11,12 +11,12 @@ function LoginForm(props) {
     const loginFormSchema = yup.object({
         email: yup
           .string()
-          .email("please enter a valid email")
-          .required("please enter an email"),
+          .email("please enter a valid email address")
+          .required("please enter your email address"),
         password: yup
           .string()
           .required("please enter a password")
-          .min(5, "password must be 5 characters long"),
+          .min(8, "password must be 8 characters long"),
       }).required();
 
     const { register, handleSubmit, formState: { errors } } = useForm({

@@ -5,12 +5,12 @@ import useAuth from "../services/useAuth";
 
 const Register = (props) => {
   const [serverErrorMessage, setServerErrorMessage] = useState();
-  const {signInEmailUser, signInFacebookUser, signInGoogleUser} = useAuth();
+  const {createEmailUser, signInFacebookUser, signInGoogleUser} = useAuth();
 
-  const handleEmailSubmit = async (data) => {
+  const handleEmailRegister = async (data) => {
     try {
       const { email, password } = data;
-      await signInEmailUser(email, password);
+      await createEmailUser(email, password);
     } catch (e) {
       setServerErrorMessage(e.message);
     }
@@ -38,7 +38,7 @@ const Register = (props) => {
         </div>
         <Form
           serverErrorMessage={serverErrorMessage}
-          onEmailSubmit={handleEmailSubmit}
+          onEmailRegister={handleEmailRegister}
           onSocialSubmit={handleSocialSubmit}
         />
     </div>
