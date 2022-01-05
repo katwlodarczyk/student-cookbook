@@ -4,10 +4,29 @@ import TabBar from "../components/TabBar";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import useAuth from "../services/useAuth";
+import useRecipes from "../services/useRecipes";
+import React, { useEffect, useState } from "react";
 
 const Home = (props) => {
     const { user } = useAuth();
-    const {recipeCollection} = props;
+    const { getRecipes } = useRecipes();
+    const [recipes, setRecipes] = useState([]);
+
+    const getRecipesData = async () => {
+      const recipesSnap = await getRecipes();
+      let recipes = [];
+      if (recipesSnap.size) {
+        recipesSnap.forEach((doc) => {
+          recipes.push({ ...doc.data(), ...{ id: doc.id } });
+        });
+        setRecipes(recipes);
+      }
+    };
+  
+    useEffect(() => {
+      getRecipesData();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
   return (
     <div className="w-full min-h-screen h-max">
@@ -16,10 +35,10 @@ const Home = (props) => {
             <h1 className="text-xl -mb-4">Hello {user.displayName ? user.displayName : user.email},</h1>
             <p className="text-sm text-light">What you're going to cook today?</p>
             <div className="grid grid-cols-2 gap-3">
-              {recipeCollection.map( (recipe) => 
+              {recipes.map( (recipe) => 
                 <Link to={`/recipe/${recipe.id}`} key={recipe.id}>
-                  <RecipeCard recipe={recipe}/>
-                </Link>
+                <RecipeCard recipe={recipe}/>
+              </Link>
               )}
             </div>
         </div>
