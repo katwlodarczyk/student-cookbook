@@ -92,23 +92,23 @@ const Recipe = (props) => {
             </div>
             <div>
                 <h2 className="font-medium text-xl mb-2">Ingregients</h2>
-                <ul className="ml-5 list-disc list-outside">
+                <ul className="ml-5 leading-relaxed list-disc list-outside">
                 { loading ? ( "Loading..." ) : 
                     (
                     recipe.ingredients.map( (ingredient, index) =>
-                    <li key={index}> {ingredient} </li>
+                    <li className="py-1" key={index}> {ingredient} </li>
                     )
                     )}
                 </ul>
             </div>
             <div>
                 <h2 className="font-medium text-xl mb-2">Instructions</h2>
-                <ul className="list-decimal ml-3 list-outside">
+                <ul className="leading-relaxed list-decimal ml-3 list-outside">
                    
                     { loading ? ( "Loading..." ) : 
                     (
                         recipe.instructions.map( (step, index) =>
-                    <li key={index}> {step} </li>
+                    <li className="py-1" key={index}> {step} </li>
                     )
                     )}
                 </ul>
