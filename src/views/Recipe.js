@@ -50,7 +50,7 @@ const Recipe = (props) => {
         const addTL = {...recipe.ingredients}
     
         try {
-          await createShoppingList(user.uid, addTL);
+          await createShoppingList(user.uid,recipe.name, addTL);
           // add toast notification
           console.log('added to the shopping list')
         } catch (e) {
