@@ -9,8 +9,11 @@ import {
   FacebookAuthProvider,
   GoogleAuthProvider,
 } from "firebase/auth";
+import useUsers from "./useUsers";
+
 
 function useAuth() {
+  const { createUser } = useUsers();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState({});
   const auth = getAuth();
@@ -27,8 +30,13 @@ function useAuth() {
     return;
   });
 
-  const createEmailUser = (email, password) =>
+  const addUserToCollection = (user) => {
+    createUser(auth.currentUser.uid, auth.currentUser)
+  }
+
+  const createEmailUser = (email, password) => {
     createUserWithEmailAndPassword(auth, email, password);
+  }
 
   const signInEmailUser = (email, password) =>
     signInWithEmailAndPassword(auth, email, password);

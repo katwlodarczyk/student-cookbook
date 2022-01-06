@@ -2,8 +2,10 @@ import logo from '../assets/illustrations/logo.svg'
 import React, { useState } from "react";
 import Form from "../components/RegisterForm";
 import useAuth from "../services/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const Register = (props) => {
+  const navigate = useNavigate();
   const [serverErrorMessage, setServerErrorMessage] = useState();
   const {createEmailUser, signInFacebookUser, signInGoogleUser} = useAuth();
 
@@ -11,6 +13,7 @@ const Register = (props) => {
     try {
       const { email, password } = data;
       await createEmailUser(email, password);
+      await navigate('../', { replace: true })
     } catch (e) {
       setServerErrorMessage(e.message);
     }

@@ -1,13 +1,9 @@
 import {
-    doc,
-    addDoc,
     collection,
     getDocs,
     getDoc,
    getFirestore
   } from "firebase/firestore";
-
-  import { useState} from "react";
 
   function useRecipes() {
     const db = getFirestore();

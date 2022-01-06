@@ -1,7 +1,5 @@
 import Banner from "../components/Banner";
 import TabBar from "../components/TabBar";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import useAuth from "../services/useAuth";
 import profileImage from "../assets/images/profile.jpg"
 import { useNavigate } from "react-router-dom";

@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useEffect, useRef } from "react";
-import { Routes, Route, Navigate, useNavigate, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Home from './views/Home';
 import ShoppingList from './views/ShoppingList';
 import WeeklyPlanner from './views/WeeklyPlanner';
@@ -33,9 +33,9 @@ function App() {
     return () => {
       componentMounted.current = false;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated])
 
-  const location = useLocation();
   let shoppingList = getShoppingList();
   let recipeCollection = getRecipeCollection();
 
@@ -59,7 +59,7 @@ function App() {
           path="/shopping-list" 
           element={
           <RequireAuth>
-            <ShoppingList/>
+            <ShoppingList shoppingList={shoppingList}/>
           </RequireAuth>
             }
           />
