@@ -59,7 +59,7 @@ function App() {
           path="/shopping-list" 
           element={
           <RequireAuth>
-            <ShoppingList shoppingList={shoppingList}/>
+            <ShoppingList/>
           </RequireAuth>
             }
           />

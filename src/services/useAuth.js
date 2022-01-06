@@ -20,6 +20,7 @@ function useAuth() {
     if (user) {
       setIsAuthenticated(true);
       setUser(auth.currentUser)
+      localStorage.setItem('userUID',auth.currentUser.uid);
       return;
     }
     setIsAuthenticated(false);
@@ -32,7 +33,7 @@ function useAuth() {
   const signInEmailUser = (email, password) =>
     signInWithEmailAndPassword(auth, email, password);
 
-  const signUserOut = () => signOut(auth);
+  const signUserOut = () => signOut(auth).then(localStorage.removeItem('userUID'));
 
   const signInFacebookUser = () => signInWithPopup(auth, facebookProvider )
   const signInGoogleUser = () => signInWithPopup(auth, googleProvider);
