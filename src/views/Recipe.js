@@ -36,6 +36,7 @@ const Recipe = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
 
+
     const [showMenu, setShowMenu] = useState(false);
 
     const displayMenu = e => {
@@ -46,7 +47,7 @@ const Recipe = (props) => {
 
   return (
     <div className="relative text-gray-700 w-full min-h-screen h-max">
-        {loading ? ( 'Loading') : (<Banner position="center" withIcon image={ recipe.photo_url}/>)}
+         {loading ? (<div className="h-40 w-full bg-gray-50"/>) : (<Banner position="center" withIcon image={ recipe.photo_url}/>)}
         <div className="min-h-screen mb-44 p-4 flex flex-col space-y-5">
             <div className="flex flex-row justify-between">
                 <div className="flex flex-col space-y-2">
@@ -67,7 +68,7 @@ const Recipe = (props) => {
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fillRule="evenodd" clipRule="evenodd" d="M16.436 1C20.063 1 22.5 3.546 22.5 7.335V16.165C22.5 19.954 20.063 22.5 16.436 22.5H7.064C3.437 22.5 1 19.954 1 16.165V7.335C1 3.546 3.437 1 7.064 1H16.436ZM16.436 2.5H7.064C4.292 2.5 2.5 4.397 2.5 7.335V16.165C2.5 19.103 4.292 21 7.064 21H16.436C19.209 21 21 19.103 21 16.165V7.335C21 4.397 19.209 2.5 16.436 2.5ZM7.1211 9.2025C7.5351 9.2025 7.8711 9.5385 7.8711 9.9525V16.8125C7.8711 17.2265 7.5351 17.5625 7.1211 17.5625C6.7071 17.5625 6.3711 17.2265 6.3711 16.8125V9.9525C6.3711 9.5385 6.7071 9.2025 7.1211 9.2025ZM11.7881 5.9185C12.2021 5.9185 12.5381 6.2545 12.5381 6.6685V16.8115C12.5381 17.2255 12.2021 17.5615 11.7881 17.5615C11.3741 17.5615 11.0381 17.2255 11.0381 16.8115V6.6685C11.0381 6.2545 11.3741 5.9185 11.7881 5.9185ZM16.3784 12.8275C16.7924 12.8275 17.1284 13.1635 17.1284 13.5775V16.8115C17.1284 17.2255 16.7924 17.5615 16.3784 17.5615C15.9644 17.5615 15.6284 17.2255 15.6284 16.8115V13.5775C15.6284 13.1635 15.9644 12.8275 16.3784 12.8275Z" fill="#333333"/>
                         </svg>
-                        <span class="capitalize">{loading ? ( "Loading..." ) :  recipe.difficulty_level}</span>
+                        <span className="capitalize">{loading ? ( "Loading..." ) :  recipe.difficulty_level}</span>
                     </div>
                 </div>
                 <div className="flex flex-col space-y-4 mt-0.5">
@@ -114,7 +115,10 @@ const Recipe = (props) => {
                 </ul>
             </div>
         </div>
-        <Link to={`step/${stepId}`} className="fixed bottom-24 w-full py-6 bg-brand-orange text-white tracking-wide font-semibold text-xl flex flex-row justify-center items-center space-x-6">
+        <Link to={{
+            pathname: `step/${stepId}`,
+            recipe: recipe
+        }} className="fixed bottom-24 w-full py-6 bg-brand-orange text-white tracking-wide font-semibold text-xl flex flex-row justify-center items-center space-x-6">
             <span>START COOKING</span>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.8366 12.3607L10.835 12.0066C10.835 10.535 10.9212 9.19332 11.051 8.31871L11.1648 7.77483C11.228 7.48678 11.3112 7.1588 11.3979 6.99137C11.7154 6.37892 12.3361 6 13.0005 6H13.0583C13.4914 6.01432 14.4012 6.39435 14.4012 6.40756C15.8652 7.02183 18.6895 8.87572 19.994 10.1974L20.3731 10.5942C20.4723 10.7017 20.5839 10.829 20.6531 10.9282C20.8844 11.2344 21 11.6134 21 11.9923C21 12.4153 20.8702 12.8085 20.6247 13.1302L20.2353 13.5505L20.148 13.6402C18.9644 14.9234 15.8739 17.0218 14.2572 17.664L14.0131 17.7576C13.7194 17.8629 13.3078 17.9884 13.0583 18C12.7408 18 12.4376 17.9262 12.1485 17.7808C11.7874 17.577 11.4994 17.2554 11.3401 16.8764C11.2387 16.6143 11.0794 15.8267 11.0794 15.8124C10.9334 15.0183 10.8487 13.7652 10.8366 12.3607ZM3 11.9996C3 11.1613 3.67308 10.4817 4.50325 10.4817L8.20248 10.8088C8.85375 10.8088 9.38174 11.3419 9.38174 11.9996C9.38174 12.6583 8.85375 13.1903 8.20248 13.1903L4.50325 13.5175C3.67308 13.5175 3 12.8378 3 11.9996Z" fill="white"/>
