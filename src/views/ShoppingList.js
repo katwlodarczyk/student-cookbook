@@ -55,6 +55,16 @@ const ShoppingList = () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    const handleChange = (itemId) => { 
+    
+      console.log('The checkbox was toggled'); 
+
+      const checkBox = document.getElementById('itemId')
+      // if (checkBox.checked == true ){ 
+      //   console.log(itemId)
+      // }
+    }; 
+
   return (
     <div className="w-full font-nunito min-h-screen h-max">
         <Banner center image={bgImage} position="center" heading="Shopping list" className="bg-cover"/>
@@ -72,7 +82,24 @@ const ShoppingList = () => {
                 <div className="flex flex-col space-y-2">
                   {
                     Object.values(toBuy).map( (ingredient, index) => 
-                      <Checkbox onClick={console.log('updated')} key={index} label={ingredient}></Checkbox> 
+                    <fieldset id={'checkbox'+index} key={index} className="space-y-5">
+                      <div className="relative flex items-start">
+                        <div className="flex items-center h-5">
+                          <input
+                            id={index}
+                            name="checkBoxItem"
+                            onChange={handleChange(index)}
+                            type="checkbox"
+                            className="focus:ring-brand-orange h-4 w-4 text-brand-orange border-gray-300 rounded" 
+                          />
+                        </div>
+                        <div className="ml-3 text-sm">
+                          <label htmlFor={index} className="font-medium text-gray-700">
+                            {ingredient}
+                          </label>
+                        </div>
+                      </div>
+                    </fieldset>
                   )}
                 </div>
               </div>
