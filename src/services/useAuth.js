@@ -24,7 +24,6 @@ function useAuth() {
       setIsAuthenticated(true);
       setUser(auth.currentUser)
       localStorage.setItem('userUID',auth.currentUser.uid);
-      console.log(auth.currentUser)
       return;
     }
     setIsAuthenticated(false);

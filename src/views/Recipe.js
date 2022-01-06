@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Banner from "../components/Banner";
 import TabBar from "../components/TabBar";
-import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import useRecipeFunctionality from "../services/useRecipeFunctionality"
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 import {
     doc,
     getDoc,
@@ -12,12 +13,13 @@ import {
   } from "firebase/firestore";
 import useAuth from "../services/useAuth";
 
-const Recipe = (props) => {
+const Recipe = () => {
     const {user} = useAuth();
     const {createShoppingList} = useRecipeFunctionality();
     let params = useParams();
     const [loading, setLoading] = useState(true);
     const [recipe, setRecipe] = useState({});
+    const stepId = 1;
     const db = getFirestore();
     const getRecipeData = async () => {
         const docRef = doc(db, "recipes", params.recipeId)
@@ -44,20 +46,18 @@ const Recipe = (props) => {
         setShowMenu(!showMenu);
       };
 
-    const stepId = 1;
-
     const addIngredientsToShoppingList = async () => {
         const addTL = {...recipe.ingredients}
     
         try {
           await createShoppingList(user.uid,recipe.name, addTL);
-          // add toast notification
-          console.log('added to the shopping list')
+           NotificationManager.success('Ingredients have been added to your shopping list', 'Success!', 2000)
         } catch (e) {
-            // add toast notification
+            NotificationManager.error('Oops, something went wrong. Try again!', 'Error!', 2000)
           console.log(e);
         }
       };
+
 
   return (
     <div className="relative text-gray-700 w-full min-h-screen h-max">
@@ -95,7 +95,7 @@ const Recipe = (props) => {
                                 <div className="py-1">
                                     <div onClick={addIngredientsToShoppingList} className="text-gray-700 block px-4 py-2 text-xs" id="0">Add to shopping list</div>
                                     <div className="text-gray-700 block px-4 py-2 text-xs" id="1">Add to my week</div>
-                                    <p className="text-gray-700 block px-4 py-2 text-xs" id="2">Share a recipe</p>
+                                    {/* <p className="text-gray-700 block px-4 py-2 text-xs" id="2">Share a recipe</p> */}
                                 </div>
                             </div>
                         )}
@@ -136,12 +136,9 @@ const Recipe = (props) => {
             </svg>
         </Link>
         <TabBar/>
+        <NotificationContainer/>
     </div>
   );
-};
-
-Recipe.propTypes = {
-  recipeCollection: PropTypes.array
 };
 
 export default Recipe;
