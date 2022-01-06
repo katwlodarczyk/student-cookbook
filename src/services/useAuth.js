@@ -24,18 +24,36 @@ function useAuth() {
       setIsAuthenticated(true);
       setUser(auth.currentUser)
       localStorage.setItem('userUID',auth.currentUser.uid);
+      console.log(auth.currentUser)
       return;
     }
     setIsAuthenticated(false);
     return;
   });
 
-  const addUserToCollection = (user) => {
-    createUser(auth.currentUser.uid, auth.currentUser)
-  }
+  // const addUserToCollection = async () => {
+  //   const userData = {
+  //     ...auth.currentUser.uid,
+  //     ...{
+
+  //       displayName: user.displayName,
+  //       userId: user.uid,
+  //       email: user.email,
+  //     },
+  //   };
+
+  //   try {
+  //     await createUser(auth.currentUser.uid, userData);
+  //     await console.log('works')
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
+
 
   const createEmailUser = (email, password) => {
     createUserWithEmailAndPassword(auth, email, password);
+    // addUserToCollection()
   }
 
   const signInEmailUser = (email, password) =>

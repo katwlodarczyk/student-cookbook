@@ -8,8 +8,8 @@ import {
 
   function useUsers() {
     const db = getFirestore();
-     // add user on register
-     const createUser = (userId, userData) => setDoc(doc(db, `users`, userId), userData);
+     // add user to collection
+     const createUser = (userId, userData) => setDoc(doc(db, "users", userId), userData, {merge: true});
     // get user
     const getUser = (uid) => getDocs(collection(db, "recipes", uid));
 

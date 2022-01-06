@@ -21,22 +21,29 @@ const Profile = (props) => {
   return (
     <div className="w-full min-h-screen h-max">
         <Banner center image={bgImage} position="center" heading="Profile" className="bg-cover"/>
-        <div className="mb-25 p-4 flex flex-col py-12">
-            <label>
-                Name
-            </label>
-            <input 
-                type="text" 
-                name="name" 
-                placeholder={user.displayName}
-                className="rounded-lg border-gray-300 text-gray-700 mt-2 mb-4"
-            />
+        <div className="mb-25 p-4 flex flex-col py-8">
+            <h1 className="text-xl mb-3">Personal Details</h1>
+            { user.displayName &&
+                <div>
+                    <label>
+                        Name
+                    </label>
+                    <input 
+                        type="text" 
+                        name="name" 
+                        disabled
+                        placeholder={user.displayName}
+                        className="rounded-lg border-gray-300 text-gray-700 mt-2 mb-4"
+                    />
+                </div>
+            }
             <label>
                 Email address
             </label>
             <input 
                 type="text" 
                 name="email" 
+                disabled
                 placeholder={user.email}
                 className="rounded-lg border-gray-300 text-gray-700 mt-2 mb-4"
             />
@@ -46,6 +53,7 @@ const Profile = (props) => {
             <input 
                 type="text" 
                 name="password" 
+                disabled
                 placeholder="********"
                 className="rounded-lg border-gray-300 text-gray-700 mt-2 mb-4"
             />
