@@ -13,29 +13,43 @@ const ShoppingList = () => {
     const {getShoppingList} = useRecipeFunctionality();
     const [loading, setLoading] = useState(true);
     const [shoppingList, setShoppingList] = useState([]);
+    const [toBuy, setToBuy] = useState([]);
+    const [bought, setBought] = useState([]);
+    const [listWithoutNames, setListWithoutNames] = useState([])
 
     const getShoppingListData = async () => {
-      console.log(userUID)
       const listSnap = await getShoppingList(userUID);
       let shoppingList = [];
       if (listSnap.size) {
-        console.log(listSnap)
         listSnap.forEach((doc) => {
           shoppingList.push({ ...doc.data(), ...{ id: doc.id } });
         });
         setShoppingList(shoppingList);
-        console.log(shoppingList)
-        getItems()
+        getItems(shoppingList)
+        // getToBuy(listWithoutNames)
         setLoading(false)
       }
     };
 
-    function getItems () {
-      return shoppingList.map( (item) => 
-        Object.values(item)      
+    const getItems = (shoppingList) => {
+      const items = shoppingList.map( (item) => 
+        Object.values(item)
+      )   
+      const names = items.map ( (el) => 
+        el.pop()
       )
+      getToBuy(items)
+      return setListWithoutNames(items)
     }
   
+    const getToBuy = (listWithoutNames) => {
+      const toBuyListToConcat = listWithoutNames.map( (item) => 
+        Object.values(item)
+      ) 
+      const toBuyList = [].concat(...toBuyListToConcat)
+      return setToBuy(toBuyList)
+    }
+
     useEffect(() => {
       getShoppingListData();
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -54,16 +68,11 @@ const ShoppingList = () => {
         {!loading && shoppingList.length > 0 && 
           <div className="mb-25 p-4 pb-12 h-full flex flex-col  space-y-5 divide-y divide-dashed divide-gray-300">
               <div className="min-h-max flex flex-col space-y-2 pb-2">
+              <h2 className="text-lg">To Buy:</h2>
                 <div className="flex flex-col space-y-2">
-                  {shoppingList.map( (item) => 
-                  <div key={item.id} className="flex flex-col space-y-1">
-                    <h2>{item.id}</h2>
-                    {
-                      Object.values(item).map( (ingredient, index) =>
-                      <Checkbox key={index} label={ingredient}></Checkbox>
-                      )
-                    }
-                  </div>
+                  {
+                    Object.values(toBuy).map( (ingredient, index) => 
+                      <Checkbox onClick={console.log('updated')} key={index} label={ingredient}></Checkbox> 
                   )}
                 </div>
               </div>
