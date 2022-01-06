@@ -10,7 +10,7 @@ function RecipeCard(props) {
 
     return (
         <div className="relative w-41 h-34 text-white text-xxxs shadow-lg rounded-lg flex" style={{ background: `url(${recipe.photo_url})`, backgroundSize: '100%', backgroundPosition: 'center' }} no-repeat="true"> 
-            <div className="absolute w-full h-full bg-overlay rounded-lg"></div>
+            <div className="absolute w-full h-full bg-recipe-overlay rounded-lg"></div>
             <div className="z-20 w-full h-full p-2 flex flex-col justify-end">
                 <div className="flex flex-row items-center space-x-1">
                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">

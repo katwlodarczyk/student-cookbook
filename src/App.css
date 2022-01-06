@@ -9,5 +9,7 @@
 }
 
 .bg-recipe-overlay {
-    background: linear-gradient(270.22deg, rgba(45, 45, 45, 0.10) 0.18%, rgba(45, 45, 45, 0.10) 85.2%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(99, 99, 99, 0.42) 69.27%, rgba(9, 9, 9, 0.56) 100%);
+    background-blend-mode: overlay;
+    mix-blend-mode: darken;
 }
