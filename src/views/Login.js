@@ -1,16 +1,20 @@
 import logo from '../assets/illustrations/logo.svg'
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Form from "../components/LoginForm";
 import useAuth from "../services/useAuth";
 
 const Login = (props) => {
+  const navigate = useNavigate();
   const [serverErrorMessage, setServerErrorMessage] = useState();
   const {signInEmailUser, signInFacebookUser, signInGoogleUser} = useAuth();
 
   const handleEmailSubmit = async (data) => {
     try {
       const { email, password } = data;
+      console.log(data)
       await signInEmailUser(email, password);
+      await navigate('../', { replace: true })
     } catch (e) {
       setServerErrorMessage(e.message);
     }
