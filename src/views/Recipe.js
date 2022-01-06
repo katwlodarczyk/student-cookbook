@@ -3,21 +3,22 @@ import Banner from "../components/Banner";
 import TabBar from "../components/TabBar";
 import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
-import { getRecipe } from "../data";
 import { Link } from "react-router-dom";
-import useRecipes from "../services/useRecipes";
+import useRecipeFunctionality from "../services/useRecipeFunctionality"
 import {
     doc,
-
     getDoc,
    getFirestore
   } from "firebase/firestore";
+import useAuth from "../services/useAuth";
 
 const Recipe = (props) => {
+    const {user} = useAuth();
+    const {createShoppingList} = useRecipeFunctionality();
     let params = useParams();
     const [loading, setLoading] = useState(true);
-    const [recipe, setRecipe] = useState({})
-    const db = getFirestore()
+    const [recipe, setRecipe] = useState({});
+    const db = getFirestore();
     const getRecipeData = async () => {
         const docRef = doc(db, "recipes", params.recipeId)
         const docSnap = await getDoc(docRef)
@@ -29,7 +30,7 @@ const Recipe = (props) => {
             console.log("No recipe!");
             setLoading(false)
         }
-    }
+    };
 
     useEffect(() => {
         getRecipeData();
@@ -44,6 +45,19 @@ const Recipe = (props) => {
       };
 
     const stepId = 1;
+
+    const addIngredientsToShoppingList = async () => {
+        const addTL = {...recipe.ingredients}
+    
+        try {
+          await createShoppingList(user.uid, addTL);
+          // add toast notification
+          console.log('added to the shopping list')
+        } catch (e) {
+            // add toast notification
+          console.log(e);
+        }
+      };
 
   return (
     <div className="relative text-gray-700 w-full min-h-screen h-max">
@@ -72,9 +86,6 @@ const Recipe = (props) => {
                     </div>
                 </div>
                 <div className="flex flex-col space-y-4 mt-0.5">
-                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fillRule="evenodd" clipRule="evenodd" d="M14.6874 5.625C14.5736 5.625 14.2936 5.65625 14.1449 5.95375L11.8624 10.5175C11.5011 11.2388 10.8049 11.74 9.9999 11.855L4.8899 12.5913C4.5524 12.64 4.4374 12.89 4.4024 12.995C4.37115 13.0963 4.32115 13.3538 4.55365 13.5763L8.24865 17.1263C8.8374 17.6925 9.1049 18.5088 8.9649 19.3075L8.0949 24.32C8.04115 24.6338 8.2374 24.8163 8.3249 24.8788C8.4174 24.9488 8.6649 25.0875 8.97115 24.9275L13.5399 22.5588C14.2599 22.1875 15.1174 22.1875 15.8349 22.5588L20.4024 24.9263C20.7099 25.085 20.9574 24.9463 21.0511 24.8788C21.1386 24.8163 21.3349 24.6338 21.2811 24.32L20.4086 19.3075C20.2686 18.5088 20.5361 17.6925 21.1249 17.1263L24.8199 13.5763C25.0536 13.3538 25.0036 13.095 24.9711 12.995C24.9374 12.89 24.8224 12.64 24.4849 12.5913L19.3749 11.855C18.5711 11.74 17.8749 11.2388 17.5136 10.5163L15.2286 5.95375C15.0811 5.65625 14.8011 5.625 14.6874 5.625ZM8.68365 26.875C8.1674 26.875 7.6549 26.7125 7.21615 26.3925C6.45865 25.8375 6.0874 24.9213 6.24865 23.9988L7.11865 18.9863C7.15115 18.8 7.0874 18.6113 6.9499 18.4788L3.2549 14.9288C2.5749 14.2775 2.33115 13.315 2.61865 12.4213C2.90865 11.5175 3.67615 10.8713 4.6224 10.7363L9.7324 10C9.9299 9.9725 10.0999 9.85125 10.1849 9.67875L12.4686 5.11375C12.8899 4.2725 13.7399 3.75 14.6874 3.75C15.6349 3.75 16.4849 4.2725 16.9061 5.11375L19.1911 9.6775C19.2774 9.85125 19.4461 9.9725 19.6424 10L24.7524 10.7363C25.6986 10.8713 26.4661 11.5175 26.7561 12.4213C27.0436 13.315 26.7986 14.2775 26.1186 14.9288L22.4236 18.4788C22.2861 18.6113 22.2236 18.8 22.2561 18.985L23.1274 23.9988C23.2874 24.9225 22.9161 25.8388 22.1574 26.3925C21.3886 26.9563 20.3874 27.0325 19.5386 26.59L14.9724 24.2238C14.7936 24.1313 14.5799 24.1313 14.4011 24.2238L9.8349 26.5913C9.4699 26.7813 9.07615 26.875 8.68365 26.875Z" fill="#333333"/>
-                    </svg>
                     <div className="relative inline-block text-left">
                         <svg onClick={displayMenu} width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fillRule="evenodd" clipRule="evenodd" d="M20.1675 3C24.4038 3 27.25 5.9725 27.25 10.395V20.605C27.25 25.0275 24.4038 28 20.1663 28H9.33125C5.095 28 2.25 25.0275 2.25 20.605V10.395C2.25 5.9725 5.095 3 9.33125 3H20.1675ZM20.1675 4.875H9.33125C6.16875 4.875 4.125 7.04125 4.125 10.395V20.605C4.125 23.9587 6.16875 26.125 9.33125 26.125H20.1663C23.33 26.125 25.375 23.9587 25.375 20.605V10.395C25.375 7.04125 23.33 4.875 20.1675 4.875ZM19.6853 14.2671C20.3765 14.2671 20.9353 14.8259 20.9353 15.5171C20.9353 16.2084 20.3765 16.7671 19.6853 16.7671C18.994 16.7671 18.429 16.2084 18.429 15.5171C18.429 14.8259 18.9828 14.2671 19.6728 14.2671H19.6853ZM14.6731 14.2671C15.3644 14.2671 15.9231 14.8259 15.9231 15.5171C15.9231 16.2084 15.3644 16.7671 14.6731 16.7671C13.9819 16.7671 13.4181 16.2084 13.4181 15.5171C13.4181 14.8259 13.9706 14.2671 14.6619 14.2671H14.6731ZM9.66213 14.2671C10.3534 14.2671 10.9121 14.8259 10.9121 15.5171C10.9121 16.2084 10.3534 16.7671 9.66213 16.7671C8.97088 16.7671 8.40588 16.2084 8.40588 15.5171C8.40588 14.8259 8.95963 14.2671 9.65088 14.2671H9.66213Z" fill="#333333"/>
@@ -82,7 +93,7 @@ const Recipe = (props) => {
                         {showMenu && (
                             <div className="z-40 origin-top-right absolute mt-1 right-0 w-40 rounded-md shadow-lg bg-white focus:outline-none">
                                 <div className="py-1">
-                                    <div className="text-gray-700 block px-4 py-2 text-xs" id="0">Add to shopping list</div>
+                                    <div onClick={addIngredientsToShoppingList} className="text-gray-700 block px-4 py-2 text-xs" id="0">Add to shopping list</div>
                                     <div className="text-gray-700 block px-4 py-2 text-xs" id="1">Add to my week</div>
                                     <p className="text-gray-700 block px-4 py-2 text-xs" id="2">Share a recipe</p>
                                 </div>
