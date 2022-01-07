@@ -16,6 +16,7 @@ const ShoppingList = () => {
     const [toBuy, setToBuy] = useState([]);
     const [bought, setBought] = useState([]);
     const [listWithoutNames, setListWithoutNames] = useState([])
+    const [checkedState, setCheckedState] = useState([]);
 
     const getShoppingListData = async () => {
       const listSnap = await getShoppingList(userUID);
@@ -39,6 +40,7 @@ const ShoppingList = () => {
         el.pop()
       )
       getToBuy(items)
+      // setCheckedState(new Array(toBuy.length).fill(false))
       return setListWithoutNames(items)
     }
   
@@ -47,6 +49,11 @@ const ShoppingList = () => {
         Object.values(item)
       ) 
       const toBuyList = [].concat(...toBuyListToConcat)
+      if (!localStorage.getItem('checkedState')) {
+        setCheckedState(new Array(toBuyList.length).fill(false))
+      } else {
+        setCheckedState(JSON.parse(localStorage.getItem('checkedState')))
+      }
       return setToBuy(toBuyList)
     }
 
@@ -55,15 +62,29 @@ const ShoppingList = () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const handleChange = (itemId) => { 
-    
-      console.log('The checkbox was toggled'); 
+    const handleOnChange = (position) => {
+      const updatedCheckedState = checkedState.map((item, index) =>
+        index === position ? !item : item
+      );
+  
+      setCheckedState(updatedCheckedState);
+      if (JSON.parse(localStorage.getItem('checkedState')) !== []) {
+        localStorage.removeItem('checkedState')
+        localStorage.setItem('checkedState', JSON.stringify(updatedCheckedState))
+      } else {
+        localStorage.setItem('checkedState', JSON.stringify(updatedCheckedState))
+      }
 
-      const checkBox = document.getElementById('itemId')
-      // if (checkBox.checked == true ){ 
-      //   console.log(itemId)
-      // }
-    }; 
+      function getAllBoughtIndexes(arr, val) {
+        var indexes = [], i;
+        for(i = 0; i < arr.length; i++)
+            if (arr[i] === val)
+                indexes.push(i);
+        return indexes;
+      }
+      getAllBoughtIndexes(updatedCheckedState, true)
+    };
+
 
   return (
     <div className="w-full font-nunito min-h-screen h-max">
@@ -88,13 +109,14 @@ const ShoppingList = () => {
                           <input
                             id={index}
                             name="checkBoxItem"
-                            onChange={handleChange(index)}
+                            checked={checkedState[index]}
+                            onChange={() => handleOnChange(index)}
                             type="checkbox"
-                            className="focus:ring-brand-orange h-4 w-4 text-brand-orange border-gray-300 rounded" 
+                            className="focus:ring-brand-orange h-4 w-4 text-brand-orange border-gray-300 rounded " 
                           />
                         </div>
                         <div className="ml-3 text-sm">
-                          <label htmlFor={index} className="font-medium text-gray-700">
+                          <label htmlFor={index} className={"font-medium text-gray-700 " + (checkedState[index] === true ? 'line-through' : '')}>
                             {ingredient}
                           </label>
                         </div>
