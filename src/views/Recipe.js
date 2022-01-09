@@ -9,7 +9,8 @@ import 'react-notifications/lib/notifications.css';
 import {
     doc,
     getDoc,
-   getFirestore
+   getFirestore,
+   setDoc
   } from "firebase/firestore";
 import useAuth from "../services/useAuth";
 import CalendarModal from "../components/CalendarModal";
@@ -30,11 +31,11 @@ const Recipe = () => {
         const docRef = doc(db, "recipes", params.recipeId)
         const docSnap = await getDoc(docRef)
         if (docSnap.exists()) {
-            console.log("Document data:", docSnap.data());
             setRecipe(docSnap.data())
             setLoading(false)
         } else {
             console.log("No recipe!");
+            NotificationManager.error('Oops, recipe could not been found. Try again.', 'Error!', 2000)
             setLoading(false)
         }
     };
@@ -62,10 +63,11 @@ const Recipe = () => {
 
     const addToWeeklyPlanner = async (date, recipeName) => {
         const add = {...{recipe}}
+        const recipeRef = doc(db,`weekly-planner`, user.uid, date, recipeName)
     
         try {
-          await addToPlanner(user.uid, date, add);
-           NotificationManager.success('Recipe has been added to your planner.', 'Success!', 2000)
+            await setDoc(recipeRef, add, {merge:true});
+            NotificationManager.success('Recipe has been added to your planner.', 'Success!', 2000)
         } catch (e) {
             NotificationManager.error('Oops, something went wrong. Try again!', 'Error!', 2000)
           console.log(e);
