@@ -141,7 +141,7 @@ const ShoppingList = () => {
   return (
     <div className="w-full font-nunito min-h-screen h-max">
         <Banner center image={bgImage} position="center" heading="Shopping list" className="bg-cover"/>
-        { loading && 'Loading'}
+        { loading && (<div className="p-4 text-lg">Loading...</div>)}
         {!loading && shoppingList.length === 0 && 
           <div className="mb-25 p-4 flex flex-col justify-center pt-32 items-center space-y-5 text-sm">
               <img src={empty} alt="empty cart"></img>
