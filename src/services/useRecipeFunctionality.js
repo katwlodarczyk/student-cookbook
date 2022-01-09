@@ -15,10 +15,7 @@ import {
     // get shopping list of the user
     const getShoppingList = (userId) => getDocs(collection(db, `shopping-list-${userId}`));
 
-    // add recipe to the users weekly planner 
-    const addToPlanner = (userId, date, recipeName, recipe) => setDoc(doc(db, `weekly-planner-${userId}`, date), recipe, {merge:true});
-  
-    return {createShoppingList, getShoppingList, addToPlanner}
+    return {createShoppingList, getShoppingList}
   }
   
   export default useRecipeFunctionality;
