@@ -16,13 +16,15 @@ import CalendarModal from "../components/CalendarModal";
 
 const Recipe = () => {
     const {user} = useAuth();
-    const {createShoppingList} = useRecipeFunctionality();
+    const {addToPlanner, createShoppingList} = useRecipeFunctionality();
     let params = useParams();
     const [loading, setLoading] = useState(true);
     const [recipe, setRecipe] = useState({});
     const [showModal, setShowModal] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
+    const [selectedDate, setSelectedDate] = useState();
     const stepId = 1;
+    const recipeName = recipe.name
     const db = getFirestore();
     const getRecipeData = async () => {
         const docRef = doc(db, "recipes", params.recipeId)
@@ -56,10 +58,28 @@ const Recipe = () => {
             NotificationManager.error('Oops, something went wrong. Try again!', 'Error!', 2000)
           console.log(e);
         }
-      };
+    };
+
+    const addToWeeklyPlanner = async (date, recipeName) => {
+        const add = {...{recipe}}
+    
+        try {
+          await addToPlanner(user.uid, date, add);
+           NotificationManager.success('Recipe has been added to your planner.', 'Success!', 2000)
+        } catch (e) {
+            NotificationManager.error('Oops, something went wrong. Try again!', 'Error!', 2000)
+          console.log(e);
+        }
+    };
 
       const openCalendarModal = () => {
         setShowModal(!showModal)
+      }
+
+      const handleSelectedDate = (date) => {
+          setSelectedDate(date)
+          addToWeeklyPlanner(date, recipeName)
+          setShowModal(false)
       }
 
 
@@ -129,7 +149,7 @@ const Recipe = () => {
                     </ul>
                 </div>
                 {
-            showModal && (<CalendarModal onClose={openCalendarModal} show={showModal} />)
+            showModal && (<CalendarModal onClose={openCalendarModal} show={showModal} onSelectedDate={handleSelectedDate} />)
         }
             </div>
         )}
