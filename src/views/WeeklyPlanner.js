@@ -3,14 +3,13 @@ import TabBar from "../components/TabBar";
 import calendar from "../assets/images/calendar.jpg";
 import weeklyPlanner from "../assets/illustrations/empty-calendar.svg";
 import RecipeCardFluid from "../components/RecipeCardFluid";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { DateTime } from "luxon";
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import useRecipeFunctionality from "../services/useRecipeFunctionality";
 import { confirmAlert } from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css'; 
-import _ from "underscore";
 import { doc, setDoc, deleteDoc, getFirestore } from "firebase/firestore";
 
 const WeeklyPlanner = () => {
@@ -21,8 +20,6 @@ const WeeklyPlanner = () => {
     const empty = weeklyPlanner;
     const [loading, setLoading] = useState(true);
     const [planner, setPlanner] = useState({});
-    const [groupedPlanner, setGroupedPlanner] = useState([]);
-    const [arrayPlanner, setArrayPlanner] = useState([]);
 
     const formattedToday = DateTime.now().toLocaleString(DateTime.DATE_HUGE)
     const tomorrow = DateTime.now().plus({days: 1})
@@ -39,25 +36,6 @@ const WeeklyPlanner = () => {
       }
     }
 
-    // function groupByDay(groupedPlanner) { 
-    //   console.log('groupedPLanner', groupedPlanner)
-      
-    //   _.mapObject(groupedPlanner,  function(val, key) {
-    //     console.log('key,val', key, val)
-    //     const date = key
-    //     let it;
-    //     const mappedValues = val.map((item) => {
-    //       return item
-    //     })
-
-      
-    //     return <div key={date} className="flex flex-col space-y-4">
-    //               <h2 className="text-lg">{ weekDayFormatting(date) }</h2>
-    //               <RecipeCardFluid key={it.recipe.id} recipe={it.recipe}/> 
-    //             </div>
-    //   })
-    // };
-
     const getWeeklyPlannerData = async () => {
       const listSnap = await getWeeklyPlanner(userUID);
       let planner = [];
@@ -66,7 +44,6 @@ const WeeklyPlanner = () => {
           planner.push({ ...doc.data(), ...{ id: doc.id } });
         });
         setPlanner(planner);
-        setGroupedPlanner(_.groupBy(planner, 'date'))
         setLoading(false)
       }
       else {
@@ -75,9 +52,10 @@ const WeeklyPlanner = () => {
     };
 
     useEffect(() => {
-      getWeeklyPlannerData(userUID);
+        getWeeklyPlannerData(userUID);
+     
         // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, [planner]); 
+      }, []); 
 
     const handleClickDelete = (userId, id) => {
       setLoading(true)
@@ -136,6 +114,7 @@ const WeeklyPlanner = () => {
       setPlanner(planner.filter(item => item.id !== id))
       deleteDoc(doc(db, `weekly-planner-${userUID}`, id))
       addToWeeklyPlanner(date, recipeName, recipe)
+      getWeeklyPlannerData(userUID);
       setLoading(false)
     }
 
