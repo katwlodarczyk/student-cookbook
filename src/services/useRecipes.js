@@ -10,8 +10,8 @@ import {
     const ref = collection(db, "recipes");
     // get all recipes in the collection
     const getRecipes = () => getDocs(ref);
-    // get recipe based on ID
     
+    // get recipe based on ID
     const getRecipe = (id) => {
       const ref = collection(db, "recipes", id);
       return getDoc(ref);

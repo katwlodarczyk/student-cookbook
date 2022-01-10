@@ -62,9 +62,11 @@ const Recipe = () => {
     };
 
     const addToWeeklyPlanner = async (date, recipeName) => {
-        const add = {...{recipe}}
-        const recipeRef = doc(db,`weekly-planner`, user.uid, date, recipeName)
-    
+        const add = {
+            ...{date: date, recipe}}
+        // const recipeRef = doc(db,`weekly-planner`, user.uid, date, recipeName)
+        const recipeRef = doc(db,`weekly-planner-${user.uid}`, `${date}-${recipeName}`)
+
         try {
             await setDoc(recipeRef, add, {merge:true});
             NotificationManager.success('Recipe has been added to your planner.', 'Success!', 2000)

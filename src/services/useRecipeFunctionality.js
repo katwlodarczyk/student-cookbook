@@ -15,7 +15,11 @@ import {
     // get shopping list of the user
     const getShoppingList = (userId) => getDocs(collection(db, `shopping-list-${userId}`));
 
-    return {createShoppingList, getShoppingList}
+    // get weekly planer of a user
+    const getWeeklyPlanner = (userId) => getDocs(collection(db, `weekly-planner-${userId}`));
+    // const getPlanner = () => getDocs(plannerRef);
+
+    return {createShoppingList, getShoppingList, getWeeklyPlanner}
   }
   
   export default useRecipeFunctionality;

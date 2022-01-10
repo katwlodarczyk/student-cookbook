@@ -106,7 +106,6 @@ const ShoppingList = () => {
     }
 
     const confirmDelete = () => {
-      console.log('recipeNames',recipeNames)
       confirmAlert({
         customUI: ({ onClose }) => {
           return (
