@@ -9,18 +9,17 @@ import {
   FacebookAuthProvider,
   GoogleAuthProvider,
 } from "firebase/auth";
-import useUsers from "./useUsers";
 import { useNavigate } from "react-router-dom";
 
 
 function useAuth() {
-  const { createUser } = useUsers();
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState({});
   const auth = getAuth();
   const facebookProvider = new FacebookAuthProvider();
   const googleProvider = new GoogleAuthProvider();
+
   onAuthStateChanged(auth, (user) => {
     if (user) {
       setIsAuthenticated(true);
@@ -33,8 +32,12 @@ function useAuth() {
   });
 
   const createEmailUser = (email, password) => {
-    createUserWithEmailAndPassword(auth, email, password);
-    // addUserToCollection()
+    createUserWithEmailAndPassword(auth, email, password)
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+    });
   }
 
   const signInEmailUser = (email, password) =>

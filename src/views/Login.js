@@ -21,12 +21,10 @@ const Login = (props) => {
 
   const handleSocialSubmit = async (method) => {
     try {
-      if (method === "facebook") {
-        await signInFacebookUser();
-      }
       if (method === "google") {
         await signInGoogleUser();
       }
+      await navigate('../', { replace: true })
     } catch (error) {
       console.log("error");
     }
