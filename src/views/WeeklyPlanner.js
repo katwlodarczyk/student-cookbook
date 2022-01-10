@@ -19,7 +19,7 @@ const WeeklyPlanner = () => {
     const bgImage = calendar;
     const empty = weeklyPlanner;
     const [loading, setLoading] = useState(true);
-    const [planner, setPlanner] = useState({});
+    const [planner, setPlanner] = useState([]);
 
     const formattedToday = DateTime.now().toLocaleString(DateTime.DATE_HUGE)
     const tomorrow = DateTime.now().plus({days: 1})
@@ -53,6 +53,7 @@ const WeeklyPlanner = () => {
 
     useEffect(() => {
         getWeeklyPlannerData(userUID);
+        console.log(planner)
      
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []); 

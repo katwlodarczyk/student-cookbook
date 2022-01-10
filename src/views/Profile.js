@@ -2,17 +2,14 @@ import Banner from "../components/Banner";
 import TabBar from "../components/TabBar";
 import useAuth from "../services/useAuth";
 import profileImage from "../assets/images/profile.jpg"
-import { useNavigate } from "react-router-dom";
 
-const Profile = (props) => {
+ const Profile = (props) => {
     const { user, signUserOut } = useAuth();
     const bgImage = profileImage;
-    const navigate = useNavigate();
 
     const signOut = async () => {
         try {
           await signUserOut();
-          await navigate('../login', { replace: true })
         } catch (e) {
           console.log(e.message)
         }
@@ -68,10 +65,6 @@ const Profile = (props) => {
         <TabBar/>
     </div>
   );
-};
-
-Profile.propTypes = {
-  
 };
 
 export default Profile;

@@ -10,10 +10,12 @@ import {
   GoogleAuthProvider,
 } from "firebase/auth";
 import useUsers from "./useUsers";
+import { useNavigate } from "react-router-dom";
 
 
 function useAuth() {
   const { createUser } = useUsers();
+  const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState({});
   const auth = getAuth();
@@ -30,26 +32,6 @@ function useAuth() {
     return;
   });
 
-  // const addUserToCollection = async () => {
-  //   const userData = {
-  //     ...auth.currentUser.uid,
-  //     ...{
-
-  //       displayName: user.displayName,
-  //       userId: user.uid,
-  //       email: user.email,
-  //     },
-  //   };
-
-  //   try {
-  //     await createUser(auth.currentUser.uid, userData);
-  //     await console.log('works')
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
-
-
   const createEmailUser = (email, password) => {
     createUserWithEmailAndPassword(auth, email, password);
     // addUserToCollection()
@@ -58,7 +40,7 @@ function useAuth() {
   const signInEmailUser = (email, password) =>
     signInWithEmailAndPassword(auth, email, password);
 
-  const signUserOut = () => signOut(auth).then(localStorage.removeItem('userUID'));
+  const signUserOut = () => signOut(auth).then(localStorage.removeItem('userUID')).then(navigate('../login', { replace: true }));
 
   const signInFacebookUser = () => signInWithPopup(auth, facebookProvider )
   const signInGoogleUser = () => signInWithPopup(auth, googleProvider);

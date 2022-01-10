@@ -30,7 +30,6 @@ const CookRecipe = () => {
         const docRef = doc(db, "recipes", params.recipeId)
         const docSnap = await getDoc(docRef)
         if (docSnap.exists()) {
-            console.log("Document data:", docSnap.data());
             setRecipe(docSnap.data())
             getSteps(docSnap.data())
             getStepIndex(parseInt(params.stepId, 10))

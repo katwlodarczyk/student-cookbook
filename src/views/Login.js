@@ -12,7 +12,6 @@ const Login = (props) => {
   const handleEmailSubmit = async (data) => {
     try {
       const { email, password } = data;
-      console.log(data)
       await signInEmailUser(email, password);
       await navigate('../', { replace: true })
     } catch (e) {

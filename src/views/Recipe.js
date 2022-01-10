@@ -53,8 +53,9 @@ const Recipe = () => {
         const addTL = {...recipe.ingredients}
     
         try {
-          await createShoppingList(user.uid,recipe.name, addTL);
-           NotificationManager.success('Ingredients have been added to your shopping list', 'Success!', 2000)
+          await createShoppingList(user.uid,recipe.name, addTL).then(
+            NotificationManager.success('Ingredients have been added to your shopping list', 'Success!', 2000)
+          )
         } catch (e) {
             NotificationManager.error('Oops, something went wrong. Try again!', 'Error!', 2000)
           console.log(e);
