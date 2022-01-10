@@ -124,8 +124,8 @@ const Recipe = () => {
                             {showMenu && (
                                 <div className="z-40 origin-top-right absolute mt-1 right-0 w-40 rounded-md shadow-lg bg-white focus:outline-none">
                                     <div className="py-1">
-                                        <div onClick={addIngredientsToShoppingList} className="text-gray-700 block px-4 py-2 text-xs" id="0">Add to shopping list</div>
-                                        <div onClick={openCalendarModal} className="text-gray-700 block px-4 py-2 text-xs" id="1">Add to my week</div>
+                                        <div onClick={addIngredientsToShoppingList} className="text-gray-700 block px-4 py-2.5 text-xs" id="0">Add to shopping list</div>
+                                        <div onClick={openCalendarModal} className="text-gray-700 block px-4 py-2.5 text-xs" id="1">Add to my week</div>
                                         {/* <p className="text-gray-700 block px-4 py-2 text-xs" id="2">Share a recipe</p> */}
                                     </div>
                                 </div>
