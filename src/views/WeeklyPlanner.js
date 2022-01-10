@@ -53,8 +53,6 @@ const WeeklyPlanner = () => {
 
     useEffect(() => {
         getWeeklyPlannerData(userUID);
-        console.log(planner)
-     
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []); 
 
@@ -112,10 +110,9 @@ const WeeklyPlanner = () => {
 
     const handleClickMove = (id, recipeName, date, recipe) => {
       setLoading(true)
-      setPlanner(planner.filter(item => item.id !== id))
       deleteDoc(doc(db, `weekly-planner-${userUID}`, id))
-      addToWeeklyPlanner(date, recipeName, recipe)
-      getWeeklyPlannerData(userUID);
+      .then(addToWeeklyPlanner(date, recipeName, recipe))
+      .then(getWeeklyPlannerData(userUID))
       setLoading(false)
     }
 
