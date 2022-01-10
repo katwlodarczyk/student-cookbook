@@ -16,7 +16,7 @@ RecipeCardFluid.propTypes = {
 
 function RecipeCardFluid(props) {
     const db = getFirestore();
-    const {recipe, onDelete, onMove, id} = props;
+    const {recipe, onDelete, onMove, id, date} = props;
     const userUID = localStorage.getItem('userUID');
     const [showMenu, setShowMenu] = useState(false);
     const [showModal, setShowModal] = useState(false);

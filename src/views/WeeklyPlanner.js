@@ -163,7 +163,7 @@ const WeeklyPlanner = () => {
               {planner.map( (item) => 
                   <div key={item.id} className="flex flex-col space-y-4">
                     <h2 className="text-lg">{ weekDayFormatting(item.date) }</h2>
-                      <RecipeCardFluid key={`${item.date}-${item.recipe.name}`} id={`${item.date}-${item.recipe.name}`} recipe={item.recipe} onMove={confirmMove} onDelete={confirmDelete}/> 
+                      <RecipeCardFluid key={`${item.date}-${item.recipe.name}`} date={item.date} id={`${item.date}-${item.recipe.name}`} recipe={item.recipe} onMove={confirmMove} onDelete={confirmDelete}/> 
                   </div>
                 )}
             </div>

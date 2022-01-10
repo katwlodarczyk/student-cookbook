@@ -37,6 +37,7 @@ function CalendarModal(props) {
                     className={"flex flex-col justify-center space-y-3 items-center calendar"}
                     onChange={onCalendarChange}
                     value={value}
+                    minDate={new Date}
                 />
                 <div className="flex flex-row justify-between mt-6 mx-3">
                 <button onClick={onClose}>Cancel</button>
