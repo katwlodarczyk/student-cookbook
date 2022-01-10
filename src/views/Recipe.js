@@ -64,7 +64,6 @@ const Recipe = () => {
     const addToWeeklyPlanner = async (date, recipeName) => {
         const add = {
             ...{date: date, recipe}}
-        // const recipeRef = doc(db,`weekly-planner`, user.uid, date, recipeName)
         const recipeRef = doc(db,`weekly-planner-${user.uid}`, `${date}-${recipeName}`)
 
         try {

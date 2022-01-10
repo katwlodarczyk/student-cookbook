@@ -18,12 +18,9 @@ function CalendarModal(props) {
     }
 
     const handleSave = () => {
-        // DateTime.now().toLocaleString(DateTime.DATE_HUGE)
         const formatToISO = calendarValue.toISOString()
-        const formattedDate = DateTime.fromISO(formatToISO).toLocaleString(DateTime.DATE_HUGE)
-        setFormattedCalendarValue(formattedDate)
-        onSelectedDate(formattedDate)
-        // onClose();
+        setFormattedCalendarValue(formatToISO)
+        onSelectedDate(formatToISO)
     }
 
     if (!props.show) {
@@ -31,7 +28,7 @@ function CalendarModal(props) {
     }
 
     return (
-        <div>
+        <div className='z-50'>
             <svg id="react-confirm-alert-firm-svg" className="react-confirm-alert-svg"><filter id="gaussian-blur"><feGaussianBlur stdDeviation="0.3"></feGaussianBlur></filter></svg>
         <div className='react-confirm-alert-overlay undefined'>
             <div className='react-confirm-alert'>
