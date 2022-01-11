@@ -9,9 +9,9 @@
 
 ### ✨ About
 
-A collection of quick and easy recipes with shopping list, weekly planner and a step by step guide.
+A collection of quick and easy recipes with a shopping list, weekly planner and a step by step guide.
 
-Simply log inusing email and password or your Google account and browse thorugh the recipes. Once you choose something delicious, add the recipe to your weekly planner and ingredients to the shopping list.
+Simply log in using email and password or your Google account and browse thorugh the recipes. Once you choose something delicious, add the recipe to your weekly planner and ingredients to the shopping list.
 
 No more <B>'what should I cook today?'</b> or <b>'oh no, I don't have all the ingredients!'</b> With student cookbook you know what to cook everyday and grocery shopping is a breeze with all ingredients you need in one shopping list! Bon apetit! 
 🍔 🌮 🥗 🍲 🧁
