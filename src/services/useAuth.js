@@ -3,7 +3,6 @@ import {
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
   signOut,
   signInWithPopup,
   FacebookAuthProvider,
@@ -31,15 +30,6 @@ function useAuth() {
     return;
   });
 
-  const createEmailUser = (email, password) => {
-    createUserWithEmailAndPassword(auth, email, password)
-    .catch((error) => {
-      const errorCode = error.code;
-      const setServerErrorMessage = error.message;
-      // ..
-    });
-  }
-
   const signInEmailUser = (email, password) =>
     signInWithEmailAndPassword(auth, email, password);
 
@@ -49,7 +39,6 @@ function useAuth() {
   const signInGoogleUser = () => signInWithPopup(auth, googleProvider);
 
   return {
-    createEmailUser,
     isAuthenticated,
     signInEmailUser,
     signUserOut,
