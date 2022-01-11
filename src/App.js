@@ -8,31 +8,24 @@ import Recipe from './views/Recipe';
 import CookRecipe from './views/CookRecipe';
 import Login from './views/Login';
 import Register from './views/Register';
-import Profile from './views/Profile';
+import Profile from './views/Profile'; 
 import { initializeApp } from "firebase/app";
 import firebaseConfig from "./config/firebase";
 import useAuth from "./services/useAuth";
-
-function RequireAuth({ children }) {
-  let isAuthenticated = useAuth();
-  return isAuthenticated === true ? children : <Navigate to="/login" />;
-}
 
 function App() {
   initializeApp(firebaseConfig);
   const { isAuthenticated, createEmailUser, signInEmailUser } = useAuth();
   const componentMounted = useRef(true);
-  const navigate = useNavigate();
   
   useEffect(() => {
-    if (componentMounted.current && isAuthenticated) {
-      navigate('../', { replace: true })
+    if (componentMounted.current && isAuthenticated === true) {
+      <Navigate replace to="/" />
       return;
     }
     return () => {
       componentMounted.current = false;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated])
 
   return (
@@ -40,33 +33,24 @@ function App() {
         <Routes>
           <Route path='/login' element={<Login signInEmailUser={signInEmailUser} />} />
           <Route path='/register' element={<Register createEmailUser={createEmailUser}/>} />
-          <Route 
-            exact 
+          <Route  
+            exact
             path="/" 
-            element={
-              <RequireAuth>
-                <Home/>
-              </RequireAuth>
-            } 
+            element={isAuthenticated ? <Home/> : <Navigate to="../login" replace />}
             />
           <Route 
             exact 
             path="/shopping-list" 
-            element={
-              <RequireAuth>
-                <ShoppingList/>
-              </RequireAuth>
-            }
+            element={isAuthenticated ? <ShoppingList/> : <Navigate to="../login" replace />}
           />
-          <Route exact path="/weekly-planner" element={<RequireAuth><WeeklyPlanner /></RequireAuth>} />
-          <Route exact path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
-          <Route exact path={`/recipe/:recipeId`} element={<RequireAuth><Recipe /></RequireAuth>} />
-          <Route exact path={`/recipe/:recipeId/step/:stepId`} element={<RequireAuth><CookRecipe /></RequireAuth>} />
+          <Route exact path="/weekly-planner"  element={isAuthenticated ? <WeeklyPlanner/> : <Navigate to="../login" replace />}/>
+          <Route exact path="/profile"  element={isAuthenticated ? <Profile/> : <Navigate to="../login" replace />}/>
+          <Route exact path={`/recipe/:recipeId`}  element={isAuthenticated ? <Recipe/> : <Navigate to="../login" replace />} />
+          <Route exact path={`/recipe/:recipeId/step/:stepId`}  element={isAuthenticated ? <CookRecipe/> : <Navigate to="../login" replace />} />
           <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
     </div>
   );
 }
-
 
 export default App;

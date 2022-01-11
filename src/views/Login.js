@@ -1,5 +1,5 @@
 import logo from '../assets/illustrations/logo.svg'
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Form from "../components/LoginForm";
 import useAuth from "../services/useAuth";
@@ -8,6 +8,16 @@ const Login = (props) => {
   const navigate = useNavigate();
   const [serverErrorMessage, setServerErrorMessage] = useState();
   const {signInEmailUser, signInGoogleUser} = useAuth();
+  const componentMounted = useRef(true);
+
+  useEffect(() => {
+    if (componentMounted.current) {
+      return;
+    }
+    return () => {
+      componentMounted.current = false;
+    }
+  }, [])
 
   const handleEmailSubmit = async (data) => {
     try {

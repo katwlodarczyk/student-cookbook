@@ -8,11 +8,9 @@ import {
   FacebookAuthProvider,
   GoogleAuthProvider,
 } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 
 
 function useAuth() {
-  const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState({});
   const auth = getAuth();
@@ -31,9 +29,9 @@ function useAuth() {
   });
 
   const signInEmailUser = (email, password) =>
-    signInWithEmailAndPassword(auth, email, password);
+    signInWithEmailAndPassword(auth, email, password)
 
-  const signUserOut = () => signOut(auth).then(localStorage.removeItem('userUID')).then(navigate('../login', { replace: true }));
+  const signUserOut = () => signOut(auth);
 
   const signInFacebookUser = () => signInWithPopup(auth, facebookProvider )
   const signInGoogleUser = () => signInWithPopup(auth, googleProvider);

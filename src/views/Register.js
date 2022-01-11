@@ -6,16 +6,19 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 
 const Register = (props) => {
+  const navigate = useNavigate();
   const [serverErrorMessage, setServerErrorMessage] = useState();
   const {signInGoogleUser} = useAuth();
   const auth = getAuth();
 
   const handleEmailRegister = async (data) => {
     const { email, password } = data;
-      createUserWithEmailAndPassword(auth, email, password)
+      await createUserWithEmailAndPassword(auth, email, password)
+      await navigate('../', { replace: true })
       .catch((error) => {
         setServerErrorMessage(error.message)
       });
