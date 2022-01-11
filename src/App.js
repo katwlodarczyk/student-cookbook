@@ -16,7 +16,7 @@ import useAuth from "./services/useAuth";
 
 function RequireAuth({ children }) {
   let isAuthenticated = useAuth();
-  return isAuthenticated ? children : <Navigate to="/login" />;
+  return isAuthenticated === true ? children : <Navigate to="/login" />;
 }
 
 function App() {
@@ -48,25 +48,24 @@ function App() {
             exact 
             path="/" 
             element={
-            <RequireAuth>
-              <Home recipeCollection={recipeCollection}/>
-            </RequireAuth>
+              <RequireAuth>
+                <Home/>
+              </RequireAuth>
             } 
             />
           <Route 
-          authenticated={isAuthenticated} 
-          exact 
-          path="/shopping-list" 
-          element={
-          <RequireAuth>
-            <ShoppingList shoppingList={shoppingList}/>
-          </RequireAuth>
+            exact 
+            path="/shopping-list" 
+            element={
+              <RequireAuth>
+                <ShoppingList/>
+              </RequireAuth>
             }
           />
-          <Route authenticated={isAuthenticated} exact path="/weekly-planner" element={<WeeklyPlanner />} />
-          <Route authenticated={isAuthenticated} exact path="/profile" element={<Profile />} />
-          <Route authenticated={isAuthenticated} exact path={`/recipe/:recipeId`} element={<Recipe />} />
-          <Route authenticated={isAuthenticated} exact path={`/recipe/:recipeId/step/:stepId`} element={<CookRecipe />} />
+          <Route exact path="/weekly-planner" element={<RequireAuth><WeeklyPlanner /></RequireAuth>} />
+          <Route exact path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
+          <Route exact path={`/recipe/:recipeId`} element={<RequireAuth><Recipe /></RequireAuth>} />
+          <Route exact path={`/recipe/:recipeId/step/:stepId`} element={<RequireAuth><CookRecipe /></RequireAuth>} />
           <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
     </div>

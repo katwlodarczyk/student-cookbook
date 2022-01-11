@@ -47,8 +47,4 @@ const Home = (props) => {
   );
 };
 
-Home.propTypes = {
-  recipeCollection: PropTypes.array
-};
-
 export default Home;
