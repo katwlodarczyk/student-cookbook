@@ -9,7 +9,7 @@ A collection of quick and easy recipes with shopping list, weekly planner and a 
 
 Simply log inusing email and password or your Google account and browse thorugh the recipes. Once you choose something delicious, add the recipe to your weekly planner and ingredients to the shopping list.
 
-No more 'what should I cook today?' or 'oh no, I don't have all the ingredients!' With student cookbook you know what to cook everyday and grocery shopping is a breeze with all ingredients you need in one shopping list! Bon apetit! 
+No more <B>'what should I cook today?'</b> or <b>'oh no, I don't have all the ingredients!'</b> With student cookbook you know what to cook everyday and grocery shopping is a breeze with all ingredients you need in one shopping list! Bon apetit! 
 🍔 🌮 🥗 🍲 🧁
 #
 
@@ -17,6 +17,14 @@ No more 'what should I cook today?' or 'oh no, I don't have all the ingredients!
 - React
 - Tailwind CSS
 - Firebase with FireStore
+
+Also using: 
+- [react-router-dom](https://reactrouter.com/)
+- [react-notifications](https://www.npmjs.com/package/react-notifications)
+- [react-calendar](https://www.npmjs.com/package/react-calendar)
+- [luxon](https://moment.github.io/luxon/#/)
+- [yup](https://github.com/jquense/yup)
+- [underscore](http://underscorejs.org/)
 
 #
 
