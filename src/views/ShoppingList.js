@@ -142,13 +142,13 @@ const ShoppingList = () => {
         <Banner center image={bgImage} position="center" heading="Shopping list" className="bg-cover"/>
         { loading && (<div className="p-4 text-lg">Loading...</div>)}
         {!loading && shoppingList.length === 0 && 
-          <div className="mb-25 p-4 flex flex-col justify-center pt-32 items-center space-y-5 text-sm">
+          <div className={"mb-25 p-4 flex flex-col justify-center h-auto items-center space-y-5 text-sm " + (window.innerHeight < 700 ? 'py-auto' : 'py-28')}>
               <img src={empty} alt="empty cart"></img>
               <p>Your shopping list is empty.</p>
           </div>
         }
         {!loading && shoppingList.length > 0 && 
-          <div className="mb-25 p-4 pb-12 h-full flex flex-col  space-y-5 divide-y divide-dashed divide-gray-300">
+          <div className="mb-2 p-4 pb-12 h-full flex flex-col  space-y-5 divide-y divide-dashed divide-gray-300">
               <div className="min-h-max flex flex-col space-y-2 pb-2">
                 <div className="flex flex-row justify-between items-center">
                   <h2 className="text-lg">To Buy:</h2>

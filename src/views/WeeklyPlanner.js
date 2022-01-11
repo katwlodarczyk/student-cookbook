@@ -152,7 +152,7 @@ const WeeklyPlanner = () => {
         <Banner center image={bgImage} position="top" heading="Weekly Planner"/>
         { loading && (<div className="p-4 text-lg">Loading...</div>)}
         {!loading && planner.length === 0 && 
-          <div className="mb-25 p-4 flex flex-col justify-center pt-32 items-center space-y-5 text-sm">
+          <div className={"mb-25 p-4 flex flex-col justify-center items-center space-y-5 text-sm " + (window.innerHeight < 700 ? 'py-auto' : 'py-28')}>
               <img src={empty} alt="empty calendar"></img>
               <p>Your weekly planner is empty.</p>
           </div>
