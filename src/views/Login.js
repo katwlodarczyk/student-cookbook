@@ -7,7 +7,7 @@ import useAuth from "../services/useAuth";
 const Login = (props) => {
   const navigate = useNavigate();
   const [serverErrorMessage, setServerErrorMessage] = useState();
-  const {signInEmailUser, signInFacebookUser, signInGoogleUser} = useAuth();
+  const {signInEmailUser, signInGoogleUser} = useAuth();
 
   const handleEmailSubmit = async (data) => {
     try {

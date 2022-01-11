@@ -2,20 +2,24 @@ import logo from '../assets/illustrations/logo.svg'
 import React, { useState } from "react";
 import Form from "../components/RegisterForm";
 import useAuth from "../services/useAuth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
+
 
 const Register = (props) => {
   const [serverErrorMessage, setServerErrorMessage] = useState();
-  const {createEmailUser, signInFacebookUser, signInGoogleUser} = useAuth();
+  const {signInGoogleUser} = useAuth();
+  const auth = getAuth();
 
   const handleEmailRegister = async (data) => {
-    try {
-      const { email, password } = data;
-      await createEmailUser(email, password);
-    } catch (e) {
-       console.log(e)
-       setServerErrorMessage(e.message);
+    const { email, password } = data;
+      createUserWithEmailAndPassword(auth, email, password)
+      .catch((error) => {
+        setServerErrorMessage(error.message)
+      });
     }
-  };
 
 
   const handleSocialSubmit = async (method) => {
