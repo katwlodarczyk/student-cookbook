@@ -5,6 +5,8 @@
 📲 Add it to your home screen to use as an app! 
 #
 
+![screens](src/assets/images/displayscreen.jpg)
+
 ### ✨ About
 
 A collection of quick and easy recipes with shopping list, weekly planner and a step by step guide.
@@ -45,3 +47,6 @@ While this app is fully functional and stable, it's still very much an MVP (mini
 #
 
 ![screens](src/assets/images/screens.jpg)
+
+# 
+[Link to Figma files](https://www.figma.com/file/X3oByuPMVJNel4ptcSUDNl/Student-cookbook%2F-COM623?node-id=94%3A1468)
