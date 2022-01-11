@@ -9,7 +9,6 @@ import CookRecipe from './views/CookRecipe';
 import Login from './views/Login';
 import Register from './views/Register';
 import Profile from './views/Profile';
-import { getShoppingList, getRecipeCollection } from "./data.js";
 import { initializeApp } from "firebase/app";
 import firebaseConfig from "./config/firebase";
 import useAuth from "./services/useAuth";
@@ -35,9 +34,6 @@ function App() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated])
-
-  let shoppingList = getShoppingList();
-  let recipeCollection = getRecipeCollection();
 
   return (
     <div className="App font-koho">

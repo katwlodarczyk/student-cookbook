@@ -1,7 +1,6 @@
 import Banner from "../components/Banner";
 import RecipeCard from "../components/RecipeCard";
 import TabBar from "../components/TabBar";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import useAuth from "../services/useAuth";
 import useRecipes from "../services/useRecipes";

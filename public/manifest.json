@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "name": "Student Cookbook",
+  "short_name": "Student Cookbook",
+  "description": "Student Cookbook. A vast collection of fast and easy recipes with step by step guide, shopping list and weekly planner.",
   "icons": [
     {
       "src": "favicon.ico",
