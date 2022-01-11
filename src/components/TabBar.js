@@ -5,7 +5,7 @@ function TabBar(props) {
     const location = useLocation();
 
     return (
-      <div className="z-30 fixed bottom-0 w-full bg-brand-teal text-white shadow-xl flex flex-row items-center justify-between px-7 py-4 text-xs">
+      <div className="z-30 fixed bottom-0 w-full bg-brand-teal text-white shadow-xl flex flex-row items-center justify-between px-7 pt-4 pb-8 text-xs">
         <Link to="/" active={location.pathname === "/" ? 'true' : undefined} className="flex flex-col justify-center items-center space-y-2.5 ">
             {location.pathname === "/"
             ? <svg width="40" height="40" viewBox="0 0 40 40" fill="fill-current" xmlns="http://www.w3.org/2000/svg">
