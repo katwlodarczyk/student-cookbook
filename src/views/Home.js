@@ -30,7 +30,7 @@ const Home = (props) => {
   return (
     <div className="w-full min-h-screen h-max">
         <Banner position="center" heading="Let's get cooking!"/>
-        <div className="mb-25 p-4 flex flex-col space-y-5">
+        <div className="mb-28 p-4 flex flex-col space-y-5">
             <h1 className="text-xl -mb-4">Hello {user.displayName ? user.displayName : user.email},</h1>
             <p className="text-sm text-light">What you're going to cook today?</p>
             <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-3">

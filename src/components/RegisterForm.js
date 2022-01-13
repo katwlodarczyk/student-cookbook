@@ -27,7 +27,7 @@ function RegisterForm(props) {
         <React.Fragment>
             <div>
                 <div>
-                <form id="registerForm" onSubmit={handleSubmit(onEmailRegister)} className="flex flex-col text-gray-700 mt-10mb-3">
+                <form id="registerForm" onSubmit={handleSubmit(onEmailRegister)} className="md:w-1/2 flex flex-col text-gray-700 mt-10 mb-3 md:mx-auto md:justify-center">
                         <div className="flex flex-col space-y-1 mb-4">
                             <label>
                                 Email address
@@ -60,7 +60,7 @@ function RegisterForm(props) {
                             </svg>
                         </button>
                     </form>
-                    <div className="mt-3">
+                    <div className="mt-3 md:w-1/2 md:mx-auto">
                         <span>Already have an account?</span> 
                         <Link to={'/login'} className="cursor-pointer font-semibold"> Login.</Link>
                     </div>
