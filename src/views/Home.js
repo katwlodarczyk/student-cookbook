@@ -33,10 +33,10 @@ const Home = (props) => {
         <div className="mb-25 p-4 flex flex-col space-y-5">
             <h1 className="text-xl -mb-4">Hello {user.displayName ? user.displayName : user.email},</h1>
             <p className="text-sm text-light">What you're going to cook today?</p>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-3">
               {recipes.map( (recipe) => 
-                <Link to={`/recipe/${recipe.id}`} key={recipe.id}>
-                <RecipeCard recipe={recipe}/>
+                <Link to={`/recipe/${recipe.id}`} key={recipe.id} className="col-span-2">
+                  <RecipeCard recipe={recipe}/>
               </Link>
               )}
             </div>

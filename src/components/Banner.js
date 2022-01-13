@@ -36,7 +36,7 @@ function Banner(props) {
           </svg>
         </div>
         <div className={"z-20 p-6 w-full flex " + (center ? 'w-full justify-center' : 'justify-end')}>
-            <h1 className={"font-galada text-4xl text-white " + (center ? 'w-full items-center justify-center flex text-center' : 'w-1/3 mr-4 text-right')}> { heading } </h1>
+            <h1 className={"font-galada text-4xl text-white self-center " + (center ? 'w-full items-center justify-center flex text-center' : 'w-1/3 mr-4 text-right')}> { heading } </h1>
         </div>
      </div>
      

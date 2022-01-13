@@ -22,7 +22,7 @@ import { useNavigate } from "react-router-dom";
   return (
     <div className="w-full min-h-screen h-max">
         <Banner center image={bgImage} position="center" heading="Profile" className="bg-cover"/>
-        <div className="mb-25 p-4 flex flex-col py-8">
+        <div className="mb-25 p-4 flex flex-col py-8 w-full md:w-3/4">
             <h1 className="text-xl">Personal Details</h1>
             <p className="text-xs text-gray-400 mb-3">To change your details please contact admin.</p>
             { user.displayName &&

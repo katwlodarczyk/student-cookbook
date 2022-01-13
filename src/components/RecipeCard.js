@@ -8,7 +8,7 @@ function RecipeCard(props) {
     const {recipe} = props;
 
     return (
-        <div className="relative w-41 h-34 text-white text-xxxs shadow-lg rounded-lg flex" style={{ background: `url(${recipe.photo_url})`, backgroundSize: '100%', backgroundPosition: 'center' }} no-repeat="true"> 
+        <div className="relative min-w-41 w-full h-34 text-white text-xxxs shadow-lg rounded-lg flex" style={{ background: `url(${recipe.photo_url})`, backgroundSize: '100%', backgroundPosition: 'center' }} no-repeat="true"> 
             <div className="absolute w-full h-full bg-recipe-overlay rounded-lg"></div>
             <div className="z-20 w-full h-full p-2 flex flex-col justify-end">
                 <div className="flex flex-row items-center space-x-1">

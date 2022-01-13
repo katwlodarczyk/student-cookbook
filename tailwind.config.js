@@ -31,6 +31,9 @@ module.exports = {
       minHeight: {
         12.5:'12.5rem',
       },
+      minWidth: {
+        41: '10.25rem',
+      }
     },
   },
   variants: {
