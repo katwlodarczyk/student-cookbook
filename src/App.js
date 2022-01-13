@@ -15,7 +15,7 @@ import useAuth from "./services/useAuth";
 
 function App() {
   initializeApp(firebaseConfig);
-  const { createEmailUser, signInEmailUser } = useAuth();
+  const { isAuthenticated , createEmailUser, signInEmailUser } = useAuth();
   const componentMounted = useRef(true);
   const userUID = localStorage.getItem('userUID')
   
@@ -36,17 +36,17 @@ function App() {
           <Route  
             exact
             path="/" 
-            element={userUID ? <Home/> : <Navigate to="../login" replace />}
+            element={userUID || isAuthenticated? <Home/> : <Navigate to="../login" replace />}
             />
           <Route 
             exact 
             path="/shopping-list" 
-            element={userUID ? <ShoppingList/> : <Navigate to="../login" replace />}
+            element={userUID || isAuthenticated ? <ShoppingList/> : <Navigate to="../login" replace />}
           />
-          <Route exact path="/weekly-planner"  element={userUID ? <WeeklyPlanner/> : <Navigate to="../login" replace />}/>
-          <Route exact path="/profile"  element={userUID ? <Profile/> : <Navigate to="../login" replace />}/>
-          <Route exact path={`/recipe/:recipeId`}  element={userUID ? <Recipe/> : <Navigate to="../login" replace />} />
-          <Route exact path={`/recipe/:recipeId/step/:stepId`}  element={userUID ? <CookRecipe/> : <Navigate to="../login" replace />} />
+          <Route exact path="/weekly-planner"  element={userUID || isAuthenticated ? <WeeklyPlanner/> : <Navigate to="../login" replace />}/>
+          <Route exact path="/profile"  element={userUID || isAuthenticated ? <Profile/> : <Navigate to="../login" replace />}/>
+          <Route exact path={`/recipe/:recipeId`}  element={userUID || isAuthenticated ? <Recipe/> : <Navigate to="../login" replace />} />
+          <Route exact path={`/recipe/:recipeId/step/:stepId`}  element={userUID || isAuthenticated ? <CookRecipe/> : <Navigate to="../login" replace />} />
           <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
     </div>
