@@ -65,10 +65,10 @@ function RegisterForm(props) {
                         <Link to={'/login'} className="cursor-pointer font-semibold"> Login.</Link>
                     </div>
                 </div>
-                <div className="mt-4 flex flex-row justify-center items-center space-x-4">
-                    <button type='submit' className="cursor-pointer mt-8 w-1/2 py-3 bg-brand-teal text-white tracking-wide font-semibold text-base flex flex-row justify-center items-center space-x-2">
+                <div network="google" onClick={()=> onSocialSubmit("google")} className="mt-4 flex flex-row justify-center items-center space-x-4">
+                    <button className="cursor-pointer mt-8 w-1/2 py-3 bg-brand-teal text-white tracking-wide font-semibold text-base flex flex-row justify-center items-center space-x-2">
                         <span>Login with</span>
-                        <svg network="google" onClick={()=> onSocialSubmit("google")} width="24" height="24" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="24" height="24" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M33.982 17.3181C33.982 15.9251 33.8664 14.9086 33.616 13.8545H17.3386V20.1416H26.8931C26.7005 21.7041 25.6603 24.0571 23.3487 25.6382L23.3163 25.8487L28.4629 29.7448L28.8195 29.7796C32.0942 26.8242 33.982 22.4758 33.982 17.3181Z" fill="#4285F4"/>
                             <path d="M17.3386 33.8832C22.0195 33.8832 25.9491 32.3772 28.8194 29.7796L23.3487 25.6382C21.8847 26.6359 19.9198 27.3324 17.3386 27.3324C12.754 27.3324 8.86285 24.3771 7.47577 20.2923L7.27246 20.3092L1.92094 24.3563L1.85095 24.5464C4.70187 30.0807 10.5579 33.8832 17.3386 33.8832Z" fill="#34A853"/>
                             <path d="M7.47582 20.2923C7.10983 19.2382 6.89801 18.1086 6.89801 16.9416C6.89801 15.7745 7.10983 14.6451 7.45656 13.5909L7.44687 13.3664L2.02828 9.25424L1.85099 9.33665C0.67599 11.6332 0.00177002 14.2121 0.00177002 16.9416C0.00177002 19.6711 0.67599 22.2499 1.85099 24.5465L7.47582 20.2923Z" fill="#FBBC05"/>
