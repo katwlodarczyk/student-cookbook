@@ -15,18 +15,18 @@ import useAuth from "./services/useAuth";
 
 function App() {
   initializeApp(firebaseConfig);
-  const { isAuthenticated, createEmailUser, signInEmailUser } = useAuth();
+  const { createEmailUser, signInEmailUser } = useAuth();
   const componentMounted = useRef(true);
+  const userUID = localStorage.getItem('userUID')
   
   useEffect(() => {
-    if (componentMounted.current && isAuthenticated === true) {
-      <Navigate replace to="/" />
+    if (componentMounted.current) {
       return;
     }
     return () => {
       componentMounted.current = false;
     }
-  }, [isAuthenticated])
+  }, [])
 
   return (
     <div className="App font-koho">
@@ -36,17 +36,17 @@ function App() {
           <Route  
             exact
             path="/" 
-            element={isAuthenticated ? <Home/> : <Navigate to="../login" replace />}
+            element={userUID ? <Home/> : <Navigate to="../login" replace />}
             />
           <Route 
             exact 
             path="/shopping-list" 
-            element={isAuthenticated ? <ShoppingList/> : <Navigate to="../login" replace />}
+            element={userUID ? <ShoppingList/> : <Navigate to="../login" replace />}
           />
-          <Route exact path="/weekly-planner"  element={isAuthenticated ? <WeeklyPlanner/> : <Navigate to="../login" replace />}/>
-          <Route exact path="/profile"  element={isAuthenticated ? <Profile/> : <Navigate to="../login" replace />}/>
-          <Route exact path={`/recipe/:recipeId`}  element={isAuthenticated ? <Recipe/> : <Navigate to="../login" replace />} />
-          <Route exact path={`/recipe/:recipeId/step/:stepId`}  element={isAuthenticated ? <CookRecipe/> : <Navigate to="../login" replace />} />
+          <Route exact path="/weekly-planner"  element={userUID ? <WeeklyPlanner/> : <Navigate to="../login" replace />}/>
+          <Route exact path="/profile"  element={userUID ? <Profile/> : <Navigate to="../login" replace />}/>
+          <Route exact path={`/recipe/:recipeId`}  element={userUID ? <Recipe/> : <Navigate to="../login" replace />} />
+          <Route exact path={`/recipe/:recipeId/step/:stepId`}  element={userUID ? <CookRecipe/> : <Navigate to="../login" replace />} />
           <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
     </div>
