@@ -21,6 +21,7 @@ const WeeklyPlanner = () => {
     const [loading, setLoading] = useState(true);
     const [planner, setPlanner] = useState([]);
 
+    const IsoToday = DateTime.now().toISO()
     const formattedToday = DateTime.now().toLocaleString(DateTime.DATE_HUGE)
     const tomorrow = DateTime.now().plus({days: 1})
     const formattedTomorrow = tomorrow.toLocaleString(DateTime.DATE_HUGE)
@@ -41,7 +42,9 @@ const WeeklyPlanner = () => {
       let planner = [];
       if (listSnap.size) {
         listSnap.forEach((doc) => {
-          planner.push({ ...doc.data(), ...{ id: doc.id } });
+          if (doc.data().date > IsoToday) {
+            planner.push({ ...doc.data(), ...{ id: doc.id } });
+          }
         });
         setPlanner(planner);
         setLoading(false)
